@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frainel Tomás de León García — Pentesting Tracker</title>
+<meta name="description" content="Seguimiento de máquinas resueltas en Hack The Box, certificaciones y proyectos de seguridad ofensiva.">
+<style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --border:#232b36;
+  --txt:#e6edf3; --dim:#8b949e; --accent:#9fef00;
+  --easy:#9fef00; --medium:#ffb800; --hard:#ff4d4d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:ui-monospace,"SFMono-Regular","Fira Code",Menlo,monospace;
+  line-height:1.6;padding:2rem 1rem;
+}
+.wrap{max-width:960px;margin:0 auto}
+header{border-bottom:1px solid var(--border);padding-bottom:1.5rem;margin-bottom:2rem}
+h1{font-size:1.6rem;letter-spacing:-.5px}
+h1 .prompt{color:var(--accent)}
+.role{color:var(--dim);margin-top:.35rem;font-size:.9rem}
+.links{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.links a{
+  color:var(--txt);text-decoration:none;font-size:.8rem;
+  border:1px solid var(--border);border-radius:5px;padding:.35rem .7rem;
+  background:var(--panel);transition:.15s;
+}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+h2{
+  font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--accent);margin:2.5rem 0 1rem;font-weight:600;
+}
+h2::before{content:"# ";opacity:.5}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center}
+.stat .n{font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1}
+.stat .l{font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:.4rem}
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px}
+th{
+  background:var(--panel);text-align:left;padding:.7rem .9rem;
+  font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--dim);font-weight:600;
+}
+td{padding:.7rem .9rem;border-top:1px solid var(--border)}
+tr:hover td{background:rgba(159,239,0,.03)}
+.d-easy{color:var(--easy)} .d-medium{color:var(--medium)} .d-hard{color:var(--hard)}
+.ok{color:var(--accent)}
+.pending{color:var(--dim);opacity:.55}
+.tag{
+  display:inline-block;font-size:.68rem;padding:.12rem .45rem;border-radius:3px;
+  border:1px solid var(--border);color:var(--dim);
+}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.1rem;margin-bottom:.75rem}
+.card h3{font-size:.95rem;margin-bottom:.35rem}
+.card h3 a{color:var(--accent);text-decoration:none}
+.card h3 a:hover{text-decoration:underline}
+.card p{font-size:.83rem;color:var(--dim)}
+.card .stack{margin-top:.6rem;font-size:.72rem;color:var(--dim)}
+.note{font-size:.8rem;color:var(--dim);border-left:2px solid var(--border);padding-left:.9rem;margin-top:1rem}
+footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--dim);text-align:center}
+@media(max-width:600px){body{padding:1.25rem .75rem}h1{font-size:1.25rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1><span class="prompt">$</span> Frainel Tomás de León García</h1>
+  <div class="role">Junior Penetration Tester &middot; Administrador de Sistemas &middot; Lanzarote, España</div>
+  <div class="links">
+    <a href="https://github.com/fraydgarcia">GitHub</a>
+    <a href="https://app.hackthebox.com/users/2163518">Hack The Box</a>
+    <a href="https://linkedin.com/in/fraineltomas">LinkedIn</a>
+    <a href="https://github.com/fraydgarcia/htb-writeups">Writeups</a>
+  </div>
+</header>
+
+<h2>Resumen</h2>
+<div class="stats">
+  <div class="stat"><div class="n">10</div><div class="l">Season 2026</div></div>
+  <div class="stat"><div class="n">4</div><div class="l">Starting Point</div></div>
+  <div class="stat"><div class="n">2</div><div class="l">Hard</div></div>
+  <div class="stat"><div class="n">2</div><div class="l">Windows</div></div>
+</div>
+
+<h2>HTB Season 2026</h2>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Semana</th><th>Máquina</th><th>Dificultad</th><th>SO</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="pending">—</td><td class="pending">—</td><td class="pending">—</td><td class="pending">No realizada</td></tr>
+    <tr><td>2</td><td>DevHub</td><td class="d-medium">Medium</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>3</td><td>Connected</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>4</td><td>Checkpoint</td><td class="d-medium">Medium</td><td>Windows</td><td class="ok">Resuelta</td></tr>
+    <tr><td>5</td><td>Nimbus</td><td class="d-hard">Hard</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>6</td><td>Enigma</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>7</td><td>MakeSense</td><td class="d-medium">Medium</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>8</td><td>Paperwork</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>9</td><td>Bedside</td><td class="d-medium">Medium</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+    <tr><td>10</td><td>DarkZeroReturns</td><td class="d-hard">Hard</td><td>Windows</td><td class="ok">Resuelta</td></tr>
+    <tr><td>—</td><td>Cohort</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="note">
+  Los writeups de estas máquinas <strong>no se publican</strong> mientras siguen activas en Season: va contra las
+  reglas de la plataforma y estropea el reto para el resto. Se irán publicando conforme se retiren.
+</div>
+
+<h2>Máquinas retiradas — writeup disponible</h2>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Máquina</th><th>Categoría</th><th>SO</th><th>Técnica principal</th></tr></thead>
+  <tbody>
+    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/machines/devarea.md" style="color:var(--accent)">DevArea</a></td><td><span class="tag">Machine</span></td><td>Linux</td><td>Middleware de Hoverfly como RCE + abuso de la cadena de confianza de <code>sudo</code></td></tr>
+    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/archetype.md" style="color:var(--accent)">Archetype</a></td><td><span class="tag">Tier 2</span></td><td>Windows</td><td>SMB anónimo → <code>xp_cmdshell</code> → credenciales en historial de PowerShell</td></tr>
+    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/oopsie.md" style="color:var(--accent)">Oopsie</a></td><td><span class="tag">Tier 2</span></td><td>Linux</td><td>IDOR en cookies → file upload → SUID con PATH hijacking</td></tr>
+    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/vaccine.md" style="color:var(--accent)">Vaccine</a></td><td><span class="tag">Tier 2</span></td><td>Linux</td><td>Crackeo de ZIP y MD5 → SQLi → <code>sudo vi</code> (GTFOBins)</td></tr>
+    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/unified.md" style="color:var(--accent)">Unified</a></td><td><span class="tag">Tier 2</span></td><td>Linux</td><td>Log4Shell (CVE-2021-44228) → MongoDB sin auth → <code>x_shadow</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Proyectos</h2>
+
+<div class="card">
+  <h3><a href="https://github.com/fraydgarcia/tfg-honeypot-turismo">Sistema de Inteligencia de Ciberamenazas mediante Honeypot</a></h3>
+  <p>Proyecto de fin de ciclo (ASIR). Honeypot multi-servicio expuesto a Internet durante casi dos meses para
+     medir qué ataques recibe realmente una PYME del sector turístico, y convertir esos datos en recomendaciones
+     aplicables. Incluye material divulgativo dirigido a alojamientos.</p>
+  <div class="stack">T-Pot &middot; Docker &middot; Cowrie &middot; Dionaea &middot; Suricata &middot; Elasticsearch + Kibana &middot; MITRE ATT&amp;CK</div>
+</div>
+
+<div class="card">
+  <h3><a href="https://github.com/fraydgarcia/htb-writeups">HTB Writeups</a></h3>
+  <p>Writeups con formato de informe: superficie descubierta, acceso, escalada y evidencia, explicando qué señal
+     de enumeración justifica cada movimiento. Sin auto-exploits y sin flags.</p>
+  <div class="stack">Nmap &middot; Burp Suite &middot; Metasploit &middot; BloodHound &middot; NetExec</div>
+</div>
+
+<div class="card">
+  <h3><a href="https://github.com/fraydgarcia/nmapparser">nmapparser</a></h3>
+  <p>Herramienta en Python para parsear y correlacionar resultados de Nmap.</p>
+  <div class="stack">Python &middot; Nmap</div>
+</div>
+
+<h2>Formación en curso</h2>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Objetivo</th><th>Entidad</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td>CPTS — Certified Penetration Testing Specialist</td><td>Hack The Box</td><td class="pending">En preparación</td></tr>
+    <tr><td>eJPT — Junior Penetration Tester</td><td>INE / eLearnSecurity</td><td class="pending">En preparación</td></tr>
+    <tr><td>AWS Certified Cloud Practitioner (CLF-C02)</td><td>Amazon Web Services</td><td class="pending">En preparación</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>
+  Actualizado manualmente &middot; <a href="https://github.com/fraydgarcia/fraydgarcia.github.io" style="color:var(--dim)">código</a>
+</footer>
+
+</div>
+</body>
+</html>
