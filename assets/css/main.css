@@ -1,0 +1,254 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#07080d;
+  --text:rgba(210,215,225,.88);
+  --text-mid:rgba(190,195,210,.6);
+  --text-dim:rgba(160,165,180,.38);
+  --rule:rgba(180,190,210,.1);
+  --rule-bright:rgba(180,190,210,.18);
+  --accent:#2b4ba8;
+  --easy:rgba(150,190,155,.65);
+  --medium:rgba(205,180,135,.65);
+  --hard:rgba(205,145,145,.65);
+}
+
+html,body{
+  background:var(--bg);color:var(--text);min-height:100vh;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Grano */
+body::after{
+  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+.page{display:flex;flex-direction:column;align-items:center;width:100%;padding:0 24px 0}
+.col{width:min(560px,90vw)}
+
+/* Etiquetas mono */
+.label{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-transform:uppercase;text-align:center;
+}
+
+/* Cabecera */
+header{margin-top:clamp(72px,14vh,140px);text-align:center}
+header h1{
+  font-weight:300;font-size:clamp(30px,6vw,46px);letter-spacing:.5px;
+  color:rgba(220,225,240,.95);line-height:1.15;
+}
+header .role{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-transform:uppercase;margin-top:18px;line-height:2;
+}
+header .intro{
+  font-style:italic;font-weight:300;font-size:clamp(15px,2.2vw,18px);
+  color:var(--text-mid);margin-top:26px;line-height:1.8;
+}
+
+/* Navegación */
+nav{margin-top:32px;display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center}
+nav a{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-decoration:none;text-transform:uppercase;
+  border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:color .2s ease,border-color .2s ease;
+}
+nav a:hover{color:var(--text-mid);border-bottom-color:var(--accent)}
+nav .sep{color:var(--rule-bright);font-family:'Share Tech Mono',monospace;font-size:10px}
+
+/* Filete separador */
+.rule{width:100%;height:56px;position:relative;margin:48px 0 40px}
+.rule::before{
+  content:'';position:absolute;left:50%;top:0;width:1px;height:56px;
+  background:linear-gradient(to bottom,transparent,rgba(180,195,225,.18),transparent);
+}
+
+/* Filas */
+.rows{display:flex;flex-direction:column;margin-top:26px}
+.row{
+  width:100%;padding:22px 0;border-bottom:1px solid var(--rule);
+  text-decoration:none;display:block;transition:all .25s ease;
+}
+.row:last-child{border-bottom:none}
+a.row:hover .row-name{color:rgba(220,225,240,1)}
+a.row:hover .row-desc{color:rgba(170,175,195,.65)}
+
+.row-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.row-name{
+  font-weight:400;font-size:clamp(17px,3vw,21px);color:var(--text-mid);
+  letter-spacing:.3px;transition:color .25s ease;
+}
+.row-meta{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  color:var(--text-dim);text-transform:uppercase;white-space:nowrap;flex-shrink:0;
+}
+.row-desc{
+  font-weight:300;font-size:clamp(13.5px,2vw,15.5px);color:var(--text-dim);
+  margin-top:8px;line-height:1.8;transition:color .25s ease;
+}
+.row-stack{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:rgba(160,165,180,.3);margin-top:12px;text-transform:uppercase;
+}
+
+.easy{color:var(--easy)} .medium{color:var(--medium)} .hard{color:var(--hard)}
+.pending{opacity:.4}
+
+/* Cifras */
+.figures{display:flex;justify-content:center;gap:clamp(28px,7vw,60px);margin-top:28px;flex-wrap:wrap}
+.fig{text-align:center}
+.fig .n{font-weight:300;font-size:clamp(28px,5vw,38px);color:rgba(215,220,235,.9);line-height:1}
+.fig .l{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  color:var(--text-dim);text-transform:uppercase;margin-top:10px;
+}
+
+/* Nota */
+.note{
+  font-weight:300;font-style:italic;font-size:14.5px;color:var(--text-dim);
+  line-height:1.85;margin-top:28px;text-align:center;
+}
+
+footer{
+  margin:80px 0 60px;text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  color:rgba(160,165,180,.25);text-transform:uppercase;
+}
+footer a{color:rgba(160,165,180,.35);text-decoration:none;border-bottom:1px solid transparent}
+footer a:hover{border-bottom-color:var(--accent)}
+
+@media(max-width:520px){
+  .row-head{flex-direction:column;gap:6px}
+  .row-meta{white-space:normal}
+}
+
+/* ══════════════════════════════════════════════════
+   ARTÍCULO DE INVESTIGACIÓN
+   ══════════════════════════════════════════════════ */
+
+.article{width:min(680px,92vw)}
+
+.article-header{text-align:center;margin-top:clamp(64px,12vh,120px)}
+.article-header h1{
+  font-weight:300;font-size:clamp(26px,4.6vw,38px);letter-spacing:.3px;
+  color:rgba(220,225,240,.95);line-height:1.25;
+}
+.article-meta{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-transform:uppercase;margin-top:20px;
+}
+.article-lead{
+  font-style:italic;font-weight:300;font-size:clamp(15px,2.2vw,18px);
+  color:var(--text-mid);margin-top:24px;line-height:1.8;
+}
+
+/* Cuerpo */
+.article-body{margin-top:8px}
+.article-body h2{
+  font-weight:400;font-size:clamp(19px,3.2vw,24px);color:rgba(215,220,235,.9);
+  letter-spacing:.3px;margin:52px 0 20px;padding-bottom:12px;
+  border-bottom:1px solid var(--rule);
+}
+.article-body h3{
+  font-weight:400;font-size:clamp(16px,2.6vw,19px);color:var(--text-mid);
+  margin:36px 0 14px;
+}
+.article-body p{
+  font-weight:300;font-size:clamp(15px,2.1vw,17px);color:var(--text);
+  line-height:1.85;margin-bottom:20px;
+}
+.article-body ul,.article-body ol{margin:0 0 22px 22px}
+.article-body li{
+  font-weight:300;font-size:clamp(15px,2.1vw,17px);color:var(--text);
+  line-height:1.85;margin-bottom:9px;
+}
+.article-body strong{font-weight:500;color:rgba(222,227,242,.95)}
+.article-body em{font-style:italic}
+.article-body a{
+  color:var(--text);text-decoration:none;
+  border-bottom:1px solid rgba(180,190,210,.25);
+  transition:border-color .2s ease;
+}
+.article-body a:hover{border-bottom-color:var(--accent)}
+
+.article-body blockquote{
+  border-left:1px solid var(--rule-bright);padding:2px 0 2px 22px;margin:0 0 22px;
+  font-style:italic;color:var(--text-mid);
+}
+.article-body blockquote p{margin-bottom:0}
+
+/* Código */
+.article-body code{
+  font-family:'Share Tech Mono',monospace;font-size:.86em;
+  background:rgba(180,190,210,.06);padding:1px 5px;border-radius:2px;
+  color:rgba(200,208,225,.9);
+}
+.article-body pre{
+  background:rgba(180,190,210,.035);border-left:1px solid var(--rule-bright);
+  padding:18px 20px;overflow-x:auto;margin:0 0 24px;border-radius:0 2px 2px 0;
+}
+.article-body pre code{background:none;padding:0;font-size:12.5px;line-height:1.7}
+
+/* Tablas */
+.article-body table{
+  width:100%;border-collapse:collapse;margin:0 0 26px;
+  font-weight:300;font-size:clamp(13.5px,1.9vw,15px);
+}
+.article-body th{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--text-dim);font-weight:400;
+  text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule-bright);
+}
+.article-body td{
+  padding:12px 12px 12px 0;border-bottom:1px solid var(--rule);
+  color:var(--text-mid);
+}
+
+/* Figuras */
+.article-body figure{margin:0 0 28px}
+.article-body figure img{width:100%;height:auto;display:block;opacity:.92}
+.article-body figcaption{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:var(--text-dim);text-transform:uppercase;text-align:center;margin-top:12px;
+}
+
+/* Referencias */
+.article-body .refs{list-style:none;margin-left:0}
+.article-body .refs li{
+  font-size:14px;color:var(--text-dim);padding-left:26px;position:relative;
+}
+.article-body .refs li::before{
+  content:counter(r);counter-increment:r;position:absolute;left:0;
+  font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(160,165,180,.3);
+}
+.article-body .refs{counter-reset:r}
+
+/* Enlaces de investigación en la home */
+.recent{margin-top:26px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.recent a{
+  font-style:italic;font-weight:300;font-size:clamp(15px,2.2vw,18px);
+  color:var(--text-mid);text-decoration:none;letter-spacing:.5px;text-align:center;
+  border-bottom:1px solid rgba(180,190,210,.15);padding-bottom:2px;
+  transition:color .25s ease,border-color .25s ease;
+}
+.recent a:hover{color:var(--text);border-bottom-color:var(--accent)}
+.recent .more{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  text-transform:uppercase;font-style:normal;border-bottom-color:transparent;
+  color:var(--text-dim);margin-top:6px;
+}
+
+/* Pie de artículo */
+.article-nav{
+  margin-top:64px;padding-top:28px;border-top:1px solid var(--rule);text-align:center;
+}
+.article-nav a{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--text-dim);text-decoration:none;
+  border-bottom:1px solid transparent;
+}
+.article-nav a:hover{color:var(--text-mid);border-bottom-color:var(--accent)}

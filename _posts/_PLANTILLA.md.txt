@@ -1,0 +1,75 @@
+PLANTILLA DE ARTÍCULO
+=====================
+
+Cómo publicar uno nuevo:
+
+  1. Copia este archivo a  _posts/AAAA-MM-DD-titulo-en-minusculas-con-guiones.md
+     El nombre del archivo determina la fecha y la URL. Es obligatorio ese formato.
+  2. Rellena el front matter y escribe en Markdown normal.
+  3. git add . && git commit && git push
+     GitHub genera el HTML solo. No hay que compilar nada en local.
+
+La URL resultante será  /research/titulo-en-minusculas-con-guiones/
+
+---------------------------------------------------------------------------
+COPIA A PARTIR DE AQUÍ
+---------------------------------------------------------------------------
+
+---
+layout: research
+title: "Título del artículo"
+date: AAAA-MM-DD
+lead: "Una o dos frases que resuman el hallazgo. Sale en cursiva bajo el título y en el índice."
+description: "Resumen para buscadores y redes sociales. Una frase."
+stack: "Herramienta · Herramienta · Herramienta"
+---
+
+## Introducción
+
+Qué pregunta responde este artículo y por qué importa. Si puedes adelantar la
+conclusión en una frase al final de esta sección, hazlo: quien lee decide aquí
+si sigue.
+
+## Contexto técnico
+
+Qué es el sistema analizado y dónde está el punto interesante. Los identificadores
+en `código inline`. Los bloques largos así:
+
+```bash
+comando --con argumentos
+```
+
+## Análisis
+
+El cuerpo. Una sección `##` por idea, no por orden cronológico de lo que hiciste.
+
+Tablas cuando haya datos que comparar:
+
+| Columna | Columna |
+|---|---|
+| valor | valor |
+
+Figuras con pie:
+
+<figure>
+  <img src="/assets/img/nombre.png" alt="Descripción para lectores de pantalla">
+  <figcaption>Qué muestra la imagen</figcaption>
+</figure>
+
+> Las citas y los avisos importantes en blockquote.
+
+## Conclusiones
+
+Qué se lleva quien lee. Numeradas si son varias. No repitas el análisis:
+extrae de él.
+
+## Limitaciones
+
+Qué NO demuestra este trabajo. Esta sección es la que separa un análisis
+técnico de una nota de marketing — no la omitas.
+
+## Referencias
+
+<ol class="refs">
+<li><a href="https://ejemplo.com">Título del recurso</a>. Autor.</li>
+</ol>

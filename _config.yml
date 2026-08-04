@@ -1,0 +1,28 @@
+title: "Frainel Tomás de León García"
+description: "Junior Penetration Tester y Administrador de Sistemas. Seguridad ofensiva, Active Directory e inteligencia de amenazas."
+author: "Frainel Tomás de León García"
+url: "https://fraydgarcia.github.io"
+lang: es
+
+# Los artículos viven en /research/<slug>/
+permalink: /research/:title/
+
+# Formato de fecha en español, resuelto en las plantillas
+date_format: "%-d de %B de %Y"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+exclude:
+  - README.md
+  - _posts/_PLANTILLA.md.txt
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "research"

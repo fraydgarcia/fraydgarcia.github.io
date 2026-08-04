@@ -1,0 +1,38 @@
+---
+layout: default
+title: Investigación
+description: "Análisis técnicos propios: vulnerabilidades, inteligencia de amenazas y patrones de diseño inseguro."
+---
+
+  <header class="col" style="text-align:center;margin-top:clamp(72px,14vh,140px)">
+    <h1 style="font-weight:300;font-size:clamp(28px,5vw,40px);color:rgba(220,225,240,.95)">Investigación</h1>
+    <p class="intro">
+      Análisis técnicos propios: vulnerabilidades, inteligencia de amenazas<br>
+      y patrones de diseño inseguro.
+    </p>
+  </header>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    {% if site.posts.size > 0 %}
+    <div class="rows">
+      {% for post in site.posts %}
+      <a class="row" href="{{ post.url | relative_url }}">
+        <div class="row-head">
+          <span class="row-name">{{ post.title }}</span>
+          <span class="row-meta">{{ post.date | date: "%-d.%m.%Y" }}</span>
+        </div>
+        {% if post.lead %}<div class="row-desc">{{ post.lead }}</div>{% endif %}
+        {% if post.stack %}<div class="row-stack">{{ post.stack }}</div>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="note">Todavía no hay artículos publicados.</p>
+    {% endif %}
+  </section>
+
+  <footer>
+    <a href="{{ '/' | relative_url }}">Inicio</a>
+  </footer>
