@@ -3,165 +3,300 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Frainel Tomás de León García — Pentesting Tracker</title>
-<meta name="description" content="Seguimiento de máquinas resueltas en Hack The Box, certificaciones y proyectos de seguridad ofensiva.">
+<title>Frainel Tomás de León García</title>
+<meta name="description" content="Junior Penetration Tester y Administrador de Sistemas. Seguridad ofensiva, Active Directory y threat intelligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+
 :root{
-  --bg:#0d1117; --panel:#161b22; --border:#232b36;
-  --txt:#e6edf3; --dim:#8b949e; --accent:#9fef00;
-  --easy:#9fef00; --medium:#ffb800; --hard:#ff4d4d;
+  --bg:#07080d;
+  --text:rgba(210,215,225,.88);
+  --text-mid:rgba(190,195,210,.6);
+  --text-dim:rgba(160,165,180,.38);
+  --rule:rgba(180,190,210,.1);
+  --rule-bright:rgba(180,190,210,.18);
+  --accent:#2b4ba8;
+  --easy:rgba(150,190,155,.65);
+  --medium:rgba(205,180,135,.65);
+  --hard:rgba(205,145,145,.65);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:var(--bg);color:var(--txt);
-  font-family:ui-monospace,"SFMono-Regular","Fira Code",Menlo,monospace;
-  line-height:1.6;padding:2rem 1rem;
+
+html,body{
+  background:var(--bg);color:var(--text);min-height:100vh;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:960px;margin:0 auto}
-header{border-bottom:1px solid var(--border);padding-bottom:1.5rem;margin-bottom:2rem}
-h1{font-size:1.6rem;letter-spacing:-.5px}
-h1 .prompt{color:var(--accent)}
-.role{color:var(--dim);margin-top:.35rem;font-size:.9rem}
-.links{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem}
-.links a{
-  color:var(--txt);text-decoration:none;font-size:.8rem;
-  border:1px solid var(--border);border-radius:5px;padding:.35rem .7rem;
-  background:var(--panel);transition:.15s;
+
+/* Grano */
+body::after{
+  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
-.links a:hover{border-color:var(--accent);color:var(--accent)}
-h2{
-  font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;
-  color:var(--accent);margin:2.5rem 0 1rem;font-weight:600;
+
+.page{display:flex;flex-direction:column;align-items:center;width:100%;padding:0 24px 0}
+.col{width:min(560px,90vw)}
+
+/* Etiquetas mono */
+.label{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-transform:uppercase;text-align:center;
 }
-h2::before{content:"# ";opacity:.5}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem}
-.stat{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center}
-.stat .n{font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1}
-.stat .l{font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:.4rem}
-.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:6px}
-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px}
-th{
-  background:var(--panel);text-align:left;padding:.7rem .9rem;
-  font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--dim);font-weight:600;
+
+/* Cabecera */
+header{margin-top:clamp(72px,14vh,140px);text-align:center}
+header h1{
+  font-weight:300;font-size:clamp(30px,6vw,46px);letter-spacing:.5px;
+  color:rgba(220,225,240,.95);line-height:1.15;
 }
-td{padding:.7rem .9rem;border-top:1px solid var(--border)}
-tr:hover td{background:rgba(159,239,0,.03)}
-.d-easy{color:var(--easy)} .d-medium{color:var(--medium)} .d-hard{color:var(--hard)}
-.ok{color:var(--accent)}
-.pending{color:var(--dim);opacity:.55}
-.tag{
-  display:inline-block;font-size:.68rem;padding:.12rem .45rem;border-radius:3px;
-  border:1px solid var(--border);color:var(--dim);
+header .role{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-transform:uppercase;margin-top:18px;line-height:2;
 }
-.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.1rem;margin-bottom:.75rem}
-.card h3{font-size:.95rem;margin-bottom:.35rem}
-.card h3 a{color:var(--accent);text-decoration:none}
-.card h3 a:hover{text-decoration:underline}
-.card p{font-size:.83rem;color:var(--dim)}
-.card .stack{margin-top:.6rem;font-size:.72rem;color:var(--dim)}
-.note{font-size:.8rem;color:var(--dim);border-left:2px solid var(--border);padding-left:.9rem;margin-top:1rem}
-footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--dim);text-align:center}
-@media(max-width:600px){body{padding:1.25rem .75rem}h1{font-size:1.25rem}}
+header .intro{
+  font-style:italic;font-weight:300;font-size:clamp(15px,2.2vw,18px);
+  color:var(--text-mid);margin-top:26px;line-height:1.8;
+}
+
+/* Navegación */
+nav{margin-top:32px;display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center}
+nav a{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;
+  color:var(--text-dim);text-decoration:none;text-transform:uppercase;
+  border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:color .2s ease,border-color .2s ease;
+}
+nav a:hover{color:var(--text-mid);border-bottom-color:var(--accent)}
+nav .sep{color:var(--rule-bright);font-family:'Share Tech Mono',monospace;font-size:10px}
+
+/* Filete separador */
+.rule{width:100%;height:56px;position:relative;margin:48px 0 40px}
+.rule::before{
+  content:'';position:absolute;left:50%;top:0;width:1px;height:56px;
+  background:linear-gradient(to bottom,transparent,rgba(180,195,225,.18),transparent);
+}
+
+/* Filas */
+.rows{display:flex;flex-direction:column;margin-top:26px}
+.row{
+  width:100%;padding:22px 0;border-bottom:1px solid var(--rule);
+  text-decoration:none;display:block;transition:all .25s ease;
+}
+.row:last-child{border-bottom:none}
+a.row:hover .row-name{color:rgba(220,225,240,1)}
+a.row:hover .row-desc{color:rgba(170,175,195,.65)}
+
+.row-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.row-name{
+  font-weight:400;font-size:clamp(17px,3vw,21px);color:var(--text-mid);
+  letter-spacing:.3px;transition:color .25s ease;
+}
+.row-meta{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  color:var(--text-dim);text-transform:uppercase;white-space:nowrap;flex-shrink:0;
+}
+.row-desc{
+  font-weight:300;font-size:clamp(13.5px,2vw,15.5px);color:var(--text-dim);
+  margin-top:8px;line-height:1.8;transition:color .25s ease;
+}
+.row-stack{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:rgba(160,165,180,.3);margin-top:12px;text-transform:uppercase;
+}
+
+.easy{color:var(--easy)} .medium{color:var(--medium)} .hard{color:var(--hard)}
+.pending{opacity:.4}
+
+/* Cifras */
+.figures{display:flex;justify-content:center;gap:clamp(28px,7vw,60px);margin-top:28px;flex-wrap:wrap}
+.fig{text-align:center}
+.fig .n{font-weight:300;font-size:clamp(28px,5vw,38px);color:rgba(215,220,235,.9);line-height:1}
+.fig .l{
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  color:var(--text-dim);text-transform:uppercase;margin-top:10px;
+}
+
+/* Nota */
+.note{
+  font-weight:300;font-style:italic;font-size:14.5px;color:var(--text-dim);
+  line-height:1.85;margin-top:28px;text-align:center;
+}
+
+footer{
+  margin:80px 0 60px;text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;
+  color:rgba(160,165,180,.25);text-transform:uppercase;
+}
+footer a{color:rgba(160,165,180,.35);text-decoration:none;border-bottom:1px solid transparent}
+footer a:hover{border-bottom-color:var(--accent)}
+
+@media(max-width:520px){
+  .row-head{flex-direction:column;gap:6px}
+  .row-meta{white-space:normal}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
-<header>
-  <h1><span class="prompt">$</span> Frainel Tomás de León García</h1>
-  <div class="role">Junior Penetration Tester &middot; Administrador de Sistemas &middot; Lanzarote, España</div>
-  <div class="links">
-    <a href="https://github.com/fraydgarcia">GitHub</a>
-    <a href="https://app.hackthebox.com/users/2163518">Hack The Box</a>
-    <a href="https://linkedin.com/in/fraineltomas">LinkedIn</a>
-    <a href="https://github.com/fraydgarcia/htb-writeups">Writeups</a>
-  </div>
-</header>
+  <header class="col">
+    <h1>Frainel Tomás de León García</h1>
+    <div class="role">Junior Penetration Tester &middot; Administrador de Sistemas<br>Lanzarote, España</div>
+    <p class="intro">
+      Enumerar antes de explotar, entender antes de automatizar.<br>
+      Seguridad ofensiva, Active Directory e inteligencia de amenazas.
+    </p>
+    <nav>
+      <a href="https://github.com/fraydgarcia">GitHub</a><span class="sep">/</span>
+      <a href="https://app.hackthebox.com/users/2163518">Hack The Box</a><span class="sep">/</span>
+      <a href="https://linkedin.com/in/fraineltomas">LinkedIn</a><span class="sep">/</span>
+      <a href="mailto:fraydgarcia@proton.me">Correo</a>
+    </nav>
+  </header>
 
-<h2>Resumen</h2>
-<div class="stats">
-  <div class="stat"><div class="n">10</div><div class="l">Season 2026</div></div>
-  <div class="stat"><div class="n">4</div><div class="l">Starting Point</div></div>
-  <div class="stat"><div class="n">2</div><div class="l">Hard</div></div>
-  <div class="stat"><div class="n">2</div><div class="l">Windows</div></div>
-</div>
+  <div class="rule"></div>
 
-<h2>HTB Season 2026</h2>
-<div class="tablewrap">
-<table>
-  <thead><tr><th>Semana</th><th>Máquina</th><th>Dificultad</th><th>SO</th><th>Estado</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td class="pending">—</td><td class="pending">—</td><td class="pending">—</td><td class="pending">No realizada</td></tr>
-    <tr><td>2</td><td>DevHub</td><td class="d-medium">Medium</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>3</td><td>Connected</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>4</td><td>Checkpoint</td><td class="d-medium">Medium</td><td>Windows</td><td class="ok">Resuelta</td></tr>
-    <tr><td>5</td><td>Nimbus</td><td class="d-hard">Hard</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>6</td><td>Enigma</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>7</td><td>MakeSense</td><td class="d-medium">Medium</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>8</td><td>Paperwork</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>9</td><td>Bedside</td><td class="d-medium">Medium</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-    <tr><td>10</td><td>DarkZeroReturns</td><td class="d-hard">Hard</td><td>Windows</td><td class="ok">Resuelta</td></tr>
-    <tr><td>—</td><td>Cohort</td><td class="d-easy">Easy</td><td>Linux</td><td class="ok">Resuelta</td></tr>
-  </tbody>
-</table>
-</div>
-<div class="note">
-  Los writeups de estas máquinas <strong>no se publican</strong> mientras siguen activas en Season: va contra las
-  reglas de la plataforma y estropea el reto para el resto. Se irán publicando conforme se retiren.
-</div>
+  <section class="col">
+    <div class="label">Trabajo</div>
+    <div class="rows">
 
-<h2>Máquinas retiradas — writeup disponible</h2>
-<div class="tablewrap">
-<table>
-  <thead><tr><th>Máquina</th><th>Categoría</th><th>SO</th><th>Técnica principal</th></tr></thead>
-  <tbody>
-    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/machines/devarea.md" style="color:var(--accent)">DevArea</a></td><td><span class="tag">Machine</span></td><td>Linux</td><td>Middleware de Hoverfly como RCE + abuso de la cadena de confianza de <code>sudo</code></td></tr>
-    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/archetype.md" style="color:var(--accent)">Archetype</a></td><td><span class="tag">Tier 2</span></td><td>Windows</td><td>SMB anónimo → <code>xp_cmdshell</code> → credenciales en historial de PowerShell</td></tr>
-    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/oopsie.md" style="color:var(--accent)">Oopsie</a></td><td><span class="tag">Tier 2</span></td><td>Linux</td><td>IDOR en cookies → file upload → SUID con PATH hijacking</td></tr>
-    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/vaccine.md" style="color:var(--accent)">Vaccine</a></td><td><span class="tag">Tier 2</span></td><td>Linux</td><td>Crackeo de ZIP y MD5 → SQLi → <code>sudo vi</code> (GTFOBins)</td></tr>
-    <tr><td><a href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/unified.md" style="color:var(--accent)">Unified</a></td><td><span class="tag">Tier 2</span></td><td>Linux</td><td>Log4Shell (CVE-2021-44228) → MongoDB sin auth → <code>x_shadow</code></td></tr>
-  </tbody>
-</table>
-</div>
+      <a class="row" href="https://github.com/fraydgarcia/tfg-honeypot-turismo">
+        <div class="row-head">
+          <span class="row-name">Inteligencia de Ciberamenazas mediante Honeypot</span>
+          <span class="row-meta">2026</span>
+        </div>
+        <div class="row-desc">
+          Honeypot multi-servicio expuesto a Internet durante casi dos meses para medir qué ataques
+          recibe realmente una PYME del sector turístico, y convertir esos datos en recomendaciones
+          que un alojamiento pequeño pueda aplicar. Proyecto de fin de ciclo.
+        </div>
+        <div class="row-stack">T-Pot · Docker · Cowrie · Suricata · Elastic · MITRE ATT&amp;CK</div>
+      </a>
 
-<h2>Proyectos</h2>
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups">
+        <div class="row-head">
+          <span class="row-name">Writeups de Hack The Box</span>
+          <span class="row-meta">Continuo</span>
+        </div>
+        <div class="row-desc">
+          Writeups con formato de informe: superficie descubierta, acceso, escalada y evidencia,
+          explicando qué señal de enumeración justifica cada movimiento. Sin auto-exploits y sin flags.
+        </div>
+        <div class="row-stack">Nmap · Burp Suite · Metasploit · BloodHound · NetExec</div>
+      </a>
 
-<div class="card">
-  <h3><a href="https://github.com/fraydgarcia/tfg-honeypot-turismo">Sistema de Inteligencia de Ciberamenazas mediante Honeypot</a></h3>
-  <p>Proyecto de fin de ciclo (ASIR). Honeypot multi-servicio expuesto a Internet durante casi dos meses para
-     medir qué ataques recibe realmente una PYME del sector turístico, y convertir esos datos en recomendaciones
-     aplicables. Incluye material divulgativo dirigido a alojamientos.</p>
-  <div class="stack">T-Pot &middot; Docker &middot; Cowrie &middot; Dionaea &middot; Suricata &middot; Elasticsearch + Kibana &middot; MITRE ATT&amp;CK</div>
-</div>
+      <a class="row" href="https://github.com/fraydgarcia/nmapparser">
+        <div class="row-head">
+          <span class="row-name">nmapparser</span>
+          <span class="row-meta">Herramienta</span>
+        </div>
+        <div class="row-desc">
+          Utilidad en Python para parsear y correlacionar resultados de Nmap a lo largo de un
+          reconocimiento extenso.
+        </div>
+        <div class="row-stack">Python · Nmap</div>
+      </a>
 
-<div class="card">
-  <h3><a href="https://github.com/fraydgarcia/htb-writeups">HTB Writeups</a></h3>
-  <p>Writeups con formato de informe: superficie descubierta, acceso, escalada y evidencia, explicando qué señal
-     de enumeración justifica cada movimiento. Sin auto-exploits y sin flags.</p>
-  <div class="stack">Nmap &middot; Burp Suite &middot; Metasploit &middot; BloodHound &middot; NetExec</div>
-</div>
+    </div>
+  </section>
 
-<div class="card">
-  <h3><a href="https://github.com/fraydgarcia/nmapparser">nmapparser</a></h3>
-  <p>Herramienta en Python para parsear y correlacionar resultados de Nmap.</p>
-  <div class="stack">Python &middot; Nmap</div>
-</div>
+  <div class="rule"></div>
 
-<h2>Formación en curso</h2>
-<div class="tablewrap">
-<table>
-  <thead><tr><th>Objetivo</th><th>Entidad</th><th>Estado</th></tr></thead>
-  <tbody>
-    <tr><td>CPTS — Certified Penetration Testing Specialist</td><td>Hack The Box</td><td class="pending">En preparación</td></tr>
-    <tr><td>eJPT — Junior Penetration Tester</td><td>INE / eLearnSecurity</td><td class="pending">En preparación</td></tr>
-    <tr><td>AWS Certified Cloud Practitioner (CLF-C02)</td><td>Amazon Web Services</td><td class="pending">En preparación</td></tr>
-  </tbody>
-</table>
-</div>
+  <section class="col">
+    <div class="label">Práctica ofensiva</div>
+    <div class="figures">
+      <div class="fig"><div class="n">10</div><div class="l">Season 2026</div></div>
+      <div class="fig"><div class="n">5</div><div class="l">Con writeup</div></div>
+      <div class="fig"><div class="n">2</div><div class="l">Hard</div></div>
+    </div>
+    <p class="note">
+      Los writeups de máquinas activas no se publican mientras siguen en juego:<br>
+      va contra las reglas de la plataforma y estropea el reto para el resto.
+    </p>
+  </section>
 
-<footer>
-  Actualizado manualmente &middot; <a href="https://github.com/fraydgarcia/fraydgarcia.github.io" style="color:var(--dim)">código</a>
-</footer>
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">HTB Season 2026</div>
+    <div class="rows">
+      <div class="row pending"><div class="row-head"><span class="row-name">—</span><span class="row-meta">Semana 1 · No realizada</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">DevHub</span><span class="row-meta"><span class="medium">Medium</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Connected</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Checkpoint</span><span class="row-meta"><span class="medium">Medium</span> · Windows</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Nimbus</span><span class="row-meta"><span class="hard">Hard</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Enigma</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">MakeSense</span><span class="row-meta"><span class="medium">Medium</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Paperwork</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Bedside</span><span class="row-meta"><span class="medium">Medium</span> · Linux</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">DarkZeroReturns</span><span class="row-meta"><span class="hard">Hard</span> · Windows</span></div></div>
+      <div class="row"><div class="row-head"><span class="row-name">Cohort</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">Retiradas · writeup disponible</div>
+    <div class="rows">
+
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/machines/devarea.md">
+        <div class="row-head"><span class="row-name">DevArea</span><span class="row-meta">Machine · Linux</span></div>
+        <div class="row-desc">El middleware de Hoverfly como ejecución remota por diseño, y escalada abusando de la cadena de confianza entre <em>sudo</em> y el intérprete.</div>
+      </a>
+
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/archetype.md">
+        <div class="row-head"><span class="row-name">Archetype</span><span class="row-meta">Tier 2 · Windows</span></div>
+        <div class="row-desc">SMB anónimo filtra credenciales de servicio, <em>xp_cmdshell</em> en MSSQL da ejecución, y el historial de PowerShell entrega al Administrator.</div>
+      </a>
+
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/oopsie.md">
+        <div class="row-head"><span class="row-name">Oopsie</span><span class="row-meta">Tier 2 · Linux</span></div>
+        <div class="row-desc">IDOR en cookies de sesión, subida de archivos sin restricción y un binario SUID que resuelve rutas sin fijar el PATH.</div>
+      </a>
+
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/vaccine.md">
+        <div class="row-head"><span class="row-name">Vaccine</span><span class="row-meta">Tier 2 · Linux</span></div>
+        <div class="row-desc">Un backup en FTP anónimo lleva a un hash crackeable, de ahí a inyección SQL, y de ahí a root por un <em>sudo</em> mal acotado.</div>
+      </a>
+
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/unified.md">
+        <div class="row-head"><span class="row-name">Unified</span><span class="row-meta">Tier 2 · Linux</span></div>
+        <div class="row-desc">Log4Shell contra UniFi, y una base de datos local sin autenticación que permite reescribir el hash del administrador.</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">Formación</div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-head"><span class="row-name">Técnico Superior en ASIR</span><span class="row-meta">2024 – 2026</span></div>
+        <div class="row-desc">CIFP Zonzamas, Lanzarote. Mención honorífica en Seguridad y Alta Disponibilidad.</div>
+      </div>
+      <div class="row">
+        <div class="row-head"><span class="row-name">CPTS — Certified Penetration Testing Specialist</span><span class="row-meta">En curso</span></div>
+        <div class="row-desc">Hack The Box.</div>
+      </div>
+      <div class="row">
+        <div class="row-head"><span class="row-name">eJPT — Junior Penetration Tester</span><span class="row-meta">En curso</span></div>
+        <div class="row-desc">INE / eLearnSecurity.</div>
+      </div>
+      <div class="row">
+        <div class="row-head"><span class="row-name">AWS Certified Cloud Practitioner</span><span class="row-meta">En curso</span></div>
+        <div class="row-desc">Amazon Web Services, CLF-C02.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://github.com/fraydgarcia/fraydgarcia.github.io">Código</a>
+  </footer>
 
 </div>
 </body>
