@@ -31,10 +31,11 @@ COPIA A PARTIR DE AQUÍ
 layout: research
 title: "Título del artículo"
 date: AAAA-MM-DD
-author: "Frainel Tomás de León García"
+author: "Fray García"
 lead: "Una o dos frases que resuman el hallazgo. Sale bajo el título y en el índice."
 description: "Resumen para buscadores y redes sociales. Una frase."
 stack: "Herramienta · Herramienta · Herramienta"
+image: "/assets/img/og/nombre.png"   # tarjeta de LinkedIn, 1200x630; sin esto se usa la genérica
 toc:
   - title: "Introducción"
     id: introduccion
