@@ -11,6 +11,18 @@ Cómo publicar uno nuevo:
 
 La URL resultante será  /research/titulo-en-minusculas-con-guiones/
 
+DOS COSAS QUE NO PUEDES SALTARTE
+--------------------------------
+
+  · El bloque  toc:  del front matter. Es lo que dibuja el índice numerado de la
+    cabecera. Si no está, el artículo sale sin índice.
+  · El ancla  {#id}  al final de cada encabezado. Los  id  del  toc:  tienen que
+    coincidir exactamente con esas anclas o los enlaces del índice no van a
+    ningún sitio. Sin tildes, sin mayúsculas, sin espacios.
+
+Las tablas NO necesitan envoltorio de ningún tipo: el CSS ya les pone scroll
+horizontal en pantallas estrechas.
+
 ---------------------------------------------------------------------------
 COPIA A PARTIR DE AQUÍ
 ---------------------------------------------------------------------------
@@ -19,18 +31,33 @@ COPIA A PARTIR DE AQUÍ
 layout: research
 title: "Título del artículo"
 date: AAAA-MM-DD
-lead: "Una o dos frases que resuman el hallazgo. Sale en cursiva bajo el título y en el índice."
+author: "Frainel Tomás de León García"
+lead: "Una o dos frases que resuman el hallazgo. Sale bajo el título y en el índice."
 description: "Resumen para buscadores y redes sociales. Una frase."
 stack: "Herramienta · Herramienta · Herramienta"
+toc:
+  - title: "Introducción"
+    id: introduccion
+  - title: "Sección con subsecciones"
+    id: seccion
+    children:
+      - title: "Una subsección (nivel ###)"
+        id: subseccion
+  - title: "Conclusiones"
+    id: conclusiones
+  - title: "Limitaciones"
+    id: limitaciones
+  - title: "Referencias"
+    id: referencias
 ---
 
-## Introducción
+## Introducción {#introduccion}
 
 Qué pregunta responde este artículo y por qué importa. Si puedes adelantar la
 conclusión en una frase al final de esta sección, hazlo: quien lee decide aquí
 si sigue.
 
-## Contexto técnico
+## Sección con subsecciones {#seccion}
 
 Qué es el sistema analizado y dónde está el punto interesante. Los identificadores
 en `código inline`. Los bloques largos así:
@@ -39,9 +66,9 @@ en `código inline`. Los bloques largos así:
 comando --con argumentos
 ```
 
-## Análisis
+### Una subsección (nivel ###) {#subseccion}
 
-El cuerpo. Una sección `##` por idea, no por orden cronológico de lo que hiciste.
+El cuerpo. Una sección por idea, no por orden cronológico de lo que hiciste.
 
 Tablas cuando haya datos que comparar:
 
@@ -58,17 +85,22 @@ Figuras con pie:
 
 > Las citas y los avisos importantes en blockquote.
 
-## Conclusiones
+Enlaces a otros artículos del sitio, con la ruta completa:
+
+[texto del enlace]({{ '/research/slug-del-otro-articulo/' | relative_url }})
+
+## Conclusiones {#conclusiones}
 
 Qué se lleva quien lee. Numeradas si son varias. No repitas el análisis:
 extrae de él.
 
-## Limitaciones
+## Limitaciones {#limitaciones}
 
-Qué NO demuestra este trabajo. Esta sección es la que separa un análisis
-técnico de una nota de marketing — no la omitas.
+Qué NO demuestra este trabajo. Si el artículo analiza fuentes públicas en vez de
+investigación propia, dilo aquí y dilo claro. Esta sección es la que separa un
+análisis técnico de una nota de marketing — no la omitas.
 
-## Referencias
+## Referencias {#referencias}
 
 <ol class="refs">
 <li><a href="https://ejemplo.com">Título del recurso</a>. Autor.</li>
