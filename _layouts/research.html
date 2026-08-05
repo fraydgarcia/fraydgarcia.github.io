@@ -5,24 +5,42 @@ layout: default
 
   <header class="article-header">
     <h1>{{ page.title }}</h1>
-    <div class="article-meta">
-      {{ page.date | date: "%-d.%m.%Y" }}{% if page.reading %} · {{ page.reading }}{% endif %}
-    </div>
+    {%- assign meses = "enero,febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre" | split: "," -%}
+    {%- assign mes = page.date | date: "%m" | plus: 0 | minus: 1 -%}
+    <p class="article-byline">
+      {{ page.date | date: "%-d" }} de {{ meses[mes] }} de {{ page.date | date: "%Y" }} &ndash; {{ page.author | default: site.author }}{% if page.reading %} &middot; {{ page.reading }}{% endif %}
+    </p>
     {% if page.lead %}<p class="article-lead">{{ page.lead }}</p>{% endif %}
+    {% if page.stack %}<p class="article-stack">{{ page.stack }}</p>{% endif %}
   </header>
 
-  <div class="rule"></div>
+  {% if page.toc %}
+  <nav class="toc" aria-label="Contenido del artículo">
+    <p class="toc-title">Contenido</p>
+    <ol class="toc-list">
+      {% for section in page.toc %}
+      <li>
+        <a href="#{{ section.id }}">{{ section.title }}</a>
+        {% if section.children %}
+        <ul class="toc-sub">
+          {% for child in section.children %}
+          <li><a href="#{{ child.id }}">{{ child.title }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
 
   <div class="article-body">
     {{ content }}
   </div>
 
   <nav class="article-nav">
-    <a href="{{ '/research/' | relative_url }}">Toda la investigación</a>
+    <a class="prev" href="{{ '/research/' | relative_url }}">&larr; Investigación</a>
+    <a class="next" href="{{ '/' | relative_url }}">Inicio &rarr;</a>
   </nav>
-
-  <footer>
-    <a href="{{ '/' | relative_url }}">Inicio</a>
-  </footer>
 
 </article>
