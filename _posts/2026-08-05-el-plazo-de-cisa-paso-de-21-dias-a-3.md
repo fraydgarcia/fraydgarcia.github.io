@@ -64,7 +64,7 @@ Y en 2026 se rompe. Mes a mes:
 
 <figure>
 <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico: la mediana del plazo de remediación del catálogo KEV se mantiene en 21 días de 2022 a febrero de 2026, baja a 14 en marzo y a 3 en junio">
-  <g font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.46)">
+  <g font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.56)">
     <text x="72" y="75" text-anchor="end">21</text>
     <text x="72" y="148" text-anchor="end">14</text>
     <text x="72" y="221" text-anchor="end">7</text>
@@ -88,7 +88,7 @@ Y en 2026 se rompe. Mes a mes:
     <circle cx="840" cy="259" r="3.5"/>
   </g>
 
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)" text-anchor="middle">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)" text-anchor="middle">
     <text x="120" y="311">2022</text><text x="186" y="311">2023</text>
     <text x="251" y="311">2024</text><text x="316" y="311">2025</text>
     <text x="382" y="311">ENE</text><text x="447" y="311">FEB</text>
@@ -96,18 +96,18 @@ Y en 2026 se rompe. Mes a mes:
     <text x="644" y="311">MAY</text><text x="709" y="311">JUN</text>
     <text x="775" y="311">JUL</text><text x="840" y="311">AGO</text>
   </g>
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.30)" text-anchor="middle">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)" text-anchor="middle">
     <text x="251" y="330">MEDIANA ANUAL</text>
     <text x="611" y="330">2026, MES A MES</text>
   </g>
   <line x1="349" y1="40" x2="349" y2="296" stroke="rgba(237,234,230,.14)" stroke-width="1" stroke-dasharray="3 4"/>
 
   <g font-family="'Poppins', sans-serif" font-size="12">
-    <text x="130" y="58" fill="rgba(237,234,230,.72)">21 días — el estándar durante cuatro años</text>
+    <text x="130" y="58" fill="rgba(237,234,230,.80)">21 días — el estándar durante cuatro años</text>
     <text x="709" y="284" fill="#EDEAE6" font-weight="600">3 días</text>
-    <text x="513" y="132" fill="rgba(237,234,230,.72)">14</text>
+    <text x="513" y="132" fill="rgba(237,234,230,.80)">14</text>
   </g>
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">
     <text x="84" y="360">MEDIANA DEL PLAZO DE REMEDIACIÓN · CATÁLOGO KEV 2026.08.04 · N=1.660</text>
   </g>
 </svg>
