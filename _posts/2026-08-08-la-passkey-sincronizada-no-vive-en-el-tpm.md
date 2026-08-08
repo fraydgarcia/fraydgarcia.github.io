@@ -3,6 +3,7 @@ layout: research
 title: "La passkey sincronizada no vive en el TPM"
 date: 2026-08-08
 author: "Fray García"
+image: "/assets/img/og/passkeys-tpm.png"
 lead: "Unit 42 ha publicado tres ataques contra las passkeys sincronizadas de Google que funcionan desde una cuenta de usuario sin privilegios. La investigación describe cómo se roban; casi no dice cómo se detectan. Esto es lo segundo: tres reglas Sigma y la telemetría que hace falta para que sirvan de algo."
 description: "Análisis defensivo de los ataques Pass-ta-key, Silver y Golden contra las passkeys sincronizadas de Chrome: qué protege realmente el TPM, por qué el relying party no puede avisarte, y tres reglas Sigma para detectar el robo desde el endpoint."
 stack: "Sigma · Sysmon · WebAuthn/FIDO2 · Windows Event Logs · Chrome"
