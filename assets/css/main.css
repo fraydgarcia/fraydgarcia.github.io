@@ -12,9 +12,6 @@
   --gold:#8A7A5A;
   --hair:rgba(237,234,230,.14);
   --hair-soft:rgba(237,234,230,.08);
-  --easy:#93BE98;
-  --medium:#CDB487;
-  --hard:#CD9191;
 }
 
 html{scroll-behavior:smooth}
@@ -89,18 +86,6 @@ a.row:hover .row-desc{color:var(--paper-mid)}
 .row-stack{
   font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.5px;
   color:var(--gold);margin-top:10px;text-transform:uppercase;
-}
-
-.easy{color:var(--easy)} .medium{color:var(--medium)} .hard{color:var(--hard)}
-.pending{opacity:.35}
-
-/* Cifras */
-.figures{display:flex;justify-content:flex-start;gap:clamp(32px,7vw,72px);margin-top:26px;flex-wrap:wrap}
-.fig{text-align:left}
-.fig .n{font-weight:700;font-size:clamp(28px,5vw,38px);color:var(--paper);line-height:1}
-.fig .l{
-  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;
-  color:var(--paper-dim);text-transform:uppercase;margin-top:10px;
 }
 
 /* Nota */

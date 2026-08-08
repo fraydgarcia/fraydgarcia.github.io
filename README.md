@@ -1,7 +1,7 @@
 # fraydgarcia.github.io
 
-Página personal y seguimiento de práctica ofensiva: máquinas resueltas en Hack The Box,
-proyectos y formación en curso.
+Página personal y portfolio: cloud security, blue team e ingeniería de detección, con la base
+ofensiva de la que vienen. Proyectos, investigación propia y formación en curso.
 
 **En vivo:** https://fraydgarcia.github.io/
 
