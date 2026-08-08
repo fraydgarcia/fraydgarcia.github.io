@@ -4,7 +4,7 @@ layout: default
 
   <header class="col">
     <h1>Fray García</h1>
-    <div class="role">Junior Penetration Tester &middot; Administrador de Sistemas<br>Lanzarote, España</div>
+    <div class="role">Cloud Security y Blue Team &middot; Administrador de Sistemas<br>Lanzarote, España</div>
     <nav>
       <a href="https://github.com/fraydgarcia">GitHub</a><span class="sep">/</span>
       <a href="https://app.hackthebox.com/public/users/2163518">Hack The Box</a><span class="sep">/</span>
@@ -32,21 +32,86 @@ layout: default
   <div class="rule"></div>
 
   <section class="col">
-    <div class="label">Trabajo</div>
+    <div class="label">Cloud security</div>
+    <div class="rows">
+
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Identidad y permisos en AWS</span>
+          <span class="row-meta">En curso</span>
+        </div>
+        <div class="row-desc">
+          Un rol que puede asumir otro rol que puede escribir una política es el mismo problema que
+          un usuario con <em>GenericWrite</em> sobre un grupo privilegiado: un grafo de permisos que
+          nadie ha mirado entero. Trabajo esas rutas de escalada en IAM sobre cuenta propia,
+          apoyándome en lo que ya sé de abuso de ACL en Active Directory.
+        </div>
+        <div class="row-stack">IAM · Políticas y roles · S3 bucket policies · VPC · CloudTrail</div>
+      </div>
+
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Servicio de metadatos (IMDS) y SSRF a credenciales</span>
+          <span class="row-meta">Documentado</span>
+        </div>
+        <div class="row-desc">
+          Cómo una petición del lado del servidor que llega a <em>169.254.169.254</em> se
+          convierte en credenciales temporales de la instancia, y qué hace realmente IMDSv2 para
+          cortarlo. Documentado junto a la enumeración inicial de AWS, Azure y GCP.
+        </div>
+        <div class="row-stack">IMDSv1/v2 · SSRF · Credenciales temporales · Enumeración multinube</div>
+      </div>
+
+    </div>
+    <p class="note">
+      Es el enfoque más reciente del perfil: parte del trabajo todavía está en notas propias, no en
+      repositorios públicos. Lo que va quedando publicable sale en
+      <a href="{{ '/research/' | relative_url }}">Investigación</a>.
+    </p>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">Blue team y detección</div>
     <div class="rows">
 
       <a class="row" href="https://github.com/fraydgarcia/tfg-honeypot-turismo">
         <div class="row-head">
-          <span class="row-name">Inteligencia de Ciberamenazas mediante Honeypot</span>
+          <span class="row-name">Honeypot instrumentado para una PYME turística</span>
           <span class="row-meta">2026</span>
         </div>
         <div class="row-desc">
-          Honeypot multi-servicio expuesto a Internet durante casi dos meses para medir qué ataques
-          recibe realmente una PYME del sector turístico, y convertir esos datos en recomendaciones
-          que un alojamiento pequeño pueda aplicar. Proyecto de fin de ciclo.
+          Honeypot multi-servicio expuesto a Internet durante casi dos meses, instrumentado para que
+          cada interacción dejara señal: sesiones y comandos de atacante en Cowrie, alertas de red en
+          Suricata y todo correlacionado en Elastic. El resultado se mapeó a MITRE ATT&amp;CK para
+          convertir el ruido de fondo de Internet en recomendaciones que un alojamiento pequeño
+          pudiera aplicar. Proyecto de fin de ciclo, ya cerrado.
         </div>
         <div class="row-stack">T-Pot · Docker · Cowrie · Suricata · Elastic · MITRE ATT&amp;CK</div>
       </a>
+
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Ingeniería de detección y análisis SOC</span>
+          <span class="row-meta">En curso</span>
+        </div>
+        <div class="row-desc">
+          Escribir la contraparte defensiva de los ataques que ya tengo documentados: qué registro lo
+          delata, con qué regla se caza y qué se ve realmente en la telemetría. Manejo de incidentes,
+          registros de eventos de Windows, y reglas Sigma y YARA.
+        </div>
+        <div class="row-stack">Sigma · YARA · Sysmon · Windows Event Logs · Splunk · Elastic</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">Base ofensiva</div>
+    <div class="rows">
 
       <a class="row" href="https://github.com/fraydgarcia/htb-writeups">
         <div class="row-head">
@@ -60,88 +125,12 @@ layout: default
         <div class="row-stack">Nmap · Burp Suite · Metasploit · BloodHound · NetExec</div>
       </a>
 
-      <a class="row" href="https://github.com/fraydgarcia/nmapparser">
-        <div class="row-head">
-          <span class="row-name">nmapparser</span>
-          <span class="row-meta">Herramienta</span>
-        </div>
-        <div class="row-desc">
-          Utilidad en Python para parsear y correlacionar resultados de Nmap a lo largo de un
-          reconocimiento extenso.
-        </div>
-        <div class="row-stack">Python · Nmap</div>
-      </a>
-
-    </div>
-  </section>
-
-  <div class="rule"></div>
-
-  <section class="col">
-    <div class="label">Práctica ofensiva</div>
-    <div class="figures">
-      <div class="fig"><div class="n">62</div><div class="l">Máquinas resueltas</div></div>
-      <div class="fig"><div class="n">Master</div><div class="l">Rango HTB · Nivel 72</div></div>
-      <div class="fig"><div class="n">#975</div><div class="l">Season 11 · Platinum</div></div>
-      <div class="fig"><div class="n">20/26</div><div class="l">Banderas de la season</div></div>
     </div>
     <p class="note">
-      Los writeups de máquinas activas no se publican mientras siguen en juego:
-      va contra las reglas de la plataforma y estropea el reto para el resto.
+      El lado ofensivo no se abandona: saber cómo se ejecuta un ataque es lo que permite decidir qué
+      merece la pena detectar. Los writeups de máquinas activas no se publican mientras siguen en
+      juego, porque va contra las reglas de la plataforma y estropea el reto para el resto.
     </p>
-  </section>
-
-  <div class="rule"></div>
-
-  <section class="col">
-    <div class="label">HTB Season 11</div>
-    <div class="rows">
-      <div class="row pending"><div class="row-head"><span class="row-name">—</span><span class="row-meta">Semana 1 · No realizada</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">DevHub</span><span class="row-meta"><span class="medium">Medium</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Connected</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Checkpoint</span><span class="row-meta"><span class="medium">Medium</span> · Windows</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Nimbus</span><span class="row-meta"><span class="hard">Hard</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Enigma</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">MakeSense</span><span class="row-meta"><span class="medium">Medium</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Paperwork</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Bedside</span><span class="row-meta"><span class="medium">Medium</span> · Linux</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">DarkZeroReturns</span><span class="row-meta"><span class="hard">Hard</span> · Windows</span></div></div>
-      <div class="row"><div class="row-head"><span class="row-name">Cohort</span><span class="row-meta"><span class="easy">Easy</span> · Linux</span></div></div>
-    </div>
-  </section>
-
-  <div class="rule"></div>
-
-  <section class="col">
-    <div class="label">Retiradas · writeup disponible</div>
-    <div class="rows">
-
-      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/machines/devarea.md">
-        <div class="row-head"><span class="row-name">DevArea</span><span class="row-meta">Machine · Linux</span></div>
-        <div class="row-desc">El middleware de Hoverfly como ejecución remota por diseño, y escalada abusando de la cadena de confianza entre <em>sudo</em> y el intérprete.</div>
-      </a>
-
-      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/archetype.md">
-        <div class="row-head"><span class="row-name">Archetype</span><span class="row-meta">Tier 2 · Windows</span></div>
-        <div class="row-desc">SMB anónimo filtra credenciales de servicio, <em>xp_cmdshell</em> en MSSQL da ejecución, y el historial de PowerShell entrega al Administrator.</div>
-      </a>
-
-      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/oopsie.md">
-        <div class="row-head"><span class="row-name">Oopsie</span><span class="row-meta">Tier 2 · Linux</span></div>
-        <div class="row-desc">IDOR en cookies de sesión, subida de archivos sin restricción y un binario SUID que resuelve rutas sin fijar el PATH.</div>
-      </a>
-
-      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/vaccine.md">
-        <div class="row-head"><span class="row-name">Vaccine</span><span class="row-meta">Tier 2 · Linux</span></div>
-        <div class="row-desc">Un backup en FTP anónimo lleva a un hash crackeable, de ahí a inyección SQL, y de ahí a root por un <em>sudo</em> mal acotado.</div>
-      </a>
-
-      <a class="row" href="https://github.com/fraydgarcia/htb-writeups/blob/main/starting-point/unified.md">
-        <div class="row-head"><span class="row-name">Unified</span><span class="row-meta">Tier 2 · Linux</span></div>
-        <div class="row-desc">Log4Shell contra UniFi, y una base de datos local sin autenticación que permite reescribir el hash del administrador.</div>
-      </a>
-
-    </div>
   </section>
 
   <div class="rule"></div>
@@ -154,16 +143,16 @@ layout: default
         <div class="row-desc">CIFP Zonzamas, Lanzarote. Mención honorífica en Seguridad y Alta Disponibilidad.</div>
       </div>
       <div class="row">
-        <div class="row-head"><span class="row-name">CPTS — Certified Penetration Testing Specialist</span><span class="row-meta">En curso</span></div>
-        <div class="row-desc">Hack The Box.</div>
-      </div>
-      <div class="row">
-        <div class="row-head"><span class="row-name">eJPT — Junior Penetration Tester</span><span class="row-meta">En curso</span></div>
-        <div class="row-desc">INE / eLearnSecurity.</div>
-      </div>
-      <div class="row">
         <div class="row-head"><span class="row-name">AWS Certified Cloud Practitioner</span><span class="row-meta">En curso</span></div>
         <div class="row-desc">Amazon Web Services, CLF-C02.</div>
+      </div>
+      <div class="row">
+        <div class="row-head"><span class="row-name">CDSA — Certified Defensive Security Analyst</span><span class="row-meta">En curso</span></div>
+        <div class="row-desc">Hack The Box. Ruta de analista SOC: manejo de incidentes, SIEM, caza de amenazas y análisis forense.</div>
+      </div>
+      <div class="row">
+        <div class="row-head"><span class="row-name">CPTS — Certified Penetration Testing Specialist</span><span class="row-meta">En pausa</span></div>
+        <div class="row-desc">Hack The Box. Aparcada mientras el foco está en cloud y defensa.</div>
       </div>
     </div>
   </section>
