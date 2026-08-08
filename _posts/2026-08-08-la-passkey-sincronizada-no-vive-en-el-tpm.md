@@ -86,45 +86,45 @@ atacante que aún no sabe dónde apuntar, eso ya es un mapa.
 
 <figure>
 <svg viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama: la clave de identidad del dispositivo está sellada en el TPM, mientras que el blob envuelto, la base de datos de sincronización con las claves de passkey y el Security Domain Secret en memoria quedan dentro del alcance de un proceso sin privilegios">
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">
     <text x="88" y="26">DENTRO DEL TPM</text>
   </g>
   <rect x="88" y="38" width="380" height="72" fill="none" stroke="#8A7A5A" stroke-width="1.5"/>
   <text x="106" y="70" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#EDEAE6">Clave de identidad de dispositivo</text>
-  <text x="106" y="92" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">GENERADA Y SELLADA POR EL HARDWARE</text>
-  <text x="488" y="76" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.72)">La única pieza que el hardware protege de verdad.</text>
+  <text x="106" y="92" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">GENERADA Y SELLADA POR EL HARDWARE</text>
+  <text x="488" y="76" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.80)">La única pieza que el hardware protege de verdad.</text>
 
   <line x1="278" y1="110" x2="278" y2="170" stroke="rgba(237,234,230,.28)" stroke-width="1"/>
   <path d="M274,168 L278,176 L282,168 Z" fill="rgba(237,234,230,.28)"/>
-  <text x="292" y="134" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">CHROME LA GUARDA ENVUELTA</text>
+  <text x="292" y="134" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">CHROME LA GUARDA ENVUELTA</text>
 
   <rect x="76" y="140" width="794" height="250" fill="none" stroke="rgba(237,234,230,.14)" stroke-width="1" stroke-dasharray="3 4"/>
   <text x="856" y="160" font-family="'Share Tech Mono', monospace" font-size="10" fill="#8A7A5A" text-anchor="end">ALCANCE DEL MALWARE SIN PRIVILEGIOS</text>
 
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">
     <text x="88" y="164">EN DISCO</text>
   </g>
   <rect x="88" y="176" width="370" height="88" fill="none" stroke="rgba(237,234,230,.14)" stroke-width="1"/>
   <text x="106" y="206" font-family="'Share Tech Mono', monospace" font-size="13" fill="#EDEAE6">passkey_enclave_state</text>
-  <text x="106" y="228" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">BLOB DE LA CLAVE DE IDENTIDAD</text>
-  <text x="106" y="248" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">SE IMPORTA Y EL TPM FIRMA A PETICIÓN</text>
+  <text x="106" y="228" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">BLOB DE LA CLAVE DE IDENTIDAD</text>
+  <text x="106" y="248" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">SE IMPORTA Y EL TPM FIRMA A PETICIÓN</text>
 
   <rect x="486" y="176" width="370" height="88" fill="none" stroke="rgba(237,234,230,.14)" stroke-width="1"/>
   <text x="504" y="206" font-family="'Share Tech Mono', monospace" font-size="13" fill="#EDEAE6">Sync Data\LevelDB</text>
-  <text x="504" y="228" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">WebauthnCredentialSpecifics</text>
-  <text x="504" y="248" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">CLAVES CIFRADAS · SERVICIOS EN CLARO</text>
+  <text x="504" y="228" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">WebauthnCredentialSpecifics</text>
+  <text x="504" y="248" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">CLAVES CIFRADAS · SERVICIOS EN CLARO</text>
 
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">
     <text x="88" y="296">EN MEMORIA DEL PROCESO DE CHROME</text>
   </g>
   <rect x="88" y="308" width="470" height="64" fill="none" stroke="rgba(237,234,230,.14)" stroke-width="1"/>
   <text x="106" y="338" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#EDEAE6">Security Domain Secret · 32 bytes</text>
-  <text x="106" y="358" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">DESCIFRA TODAS LAS PASSKEYS DE LA CUENTA</text>
-  <text x="580" y="334" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.72)">En claro durante los flujos</text>
-  <text x="580" y="352" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.72)">de recuperación.</text>
+  <text x="106" y="358" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">DESCIFRA TODAS LAS PASSKEYS DE LA CUENTA</text>
+  <text x="580" y="334" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.80)">En claro durante los flujos</text>
+  <text x="580" y="352" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.80)">de recuperación.</text>
 
-  <text x="88" y="416" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.72)">El TPM impide copiar la clave de identidad. No impide que otro proceso la use.</text>
-  <text x="88" y="442" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">DÓNDE VIVE CADA CLAVE EN UNA PASSKEY SINCRONIZADA · CHROME SOBRE WINDOWS</text>
+  <text x="88" y="416" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.80)">El TPM impide copiar la clave de identidad. No impide que otro proceso la use.</text>
+  <text x="88" y="442" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">DÓNDE VIVE CADA CLAVE EN UNA PASSKEY SINCRONIZADA · CHROME SOBRE WINDOWS</text>
 </svg>
 <figcaption>Solo el recuadro superior está protegido por hardware, y lo que protege no es la passkey: es la identidad del dispositivo. Todo lo que cae dentro del recuadro discontinuo lo alcanza un proceso que corre como el usuario, sin elevación.</figcaption>
 </figure>
@@ -209,7 +209,7 @@ nunca — no porque esté mal escrita, sino porque no hay dato.
 
 <figure>
 <svg viewBox="0 0 900 356" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Matriz de cobertura: Pass-ta-key deja lectura de ficheros y necesita Event ID 4663 con auditoría y SACL; Silver deja el borrado del enclave y necesita Sysmon 23 o 26 con la ruta incluida en la configuración; Golden deja lectura de memoria de Chrome y lo cubre Sysmon 10 de serie">
-  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.30)">
+  <g font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">
     <text x="88" y="44">ATAQUE</text>
     <text x="290" y="44">QUÉ DEJA</text>
     <text x="540" y="44">FUENTE</text>
@@ -219,31 +219,31 @@ nunca — no porque esté mal escrita, sino porque no hay dato.
 
   <text x="88" y="92" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#EDEAE6">Pass-ta-key</text>
   <text x="88" y="110" font-family="'Share Tech Mono', monospace" font-size="10" fill="#8A7A5A">REGLA 1</text>
-  <text x="290" y="92" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.72)">Lectura del enclave y la LevelDB</text>
-  <text x="540" y="92" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.72)">Security 4663</text>
+  <text x="290" y="92" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.80)">Lectura del enclave y la LevelDB</text>
+  <text x="540" y="92" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.80)">Security 4663</text>
   <circle cx="696" cy="88" r="5" fill="none" stroke="#8A7A5A" stroke-width="1.5"/>
-  <text x="712" y="92" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">AUDITORÍA + SACL</text>
+  <text x="712" y="92" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">AUDITORÍA + SACL</text>
   <line x1="84" y1="128" x2="870" y2="128" stroke="rgba(237,234,230,.08)" stroke-width="1"/>
 
   <text x="88" y="162" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#EDEAE6">Silver Pass-ta-key</text>
   <text x="88" y="180" font-family="'Share Tech Mono', monospace" font-size="10" fill="#8A7A5A">REGLA 2</text>
-  <text x="290" y="162" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.72)">Borrado del estado del enclave</text>
-  <text x="540" y="162" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.72)">Sysmon 23/26</text>
+  <text x="290" y="162" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.80)">Borrado del estado del enclave</text>
+  <text x="540" y="162" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.80)">Sysmon 23/26</text>
   <circle cx="696" cy="158" r="5" fill="none" stroke="#8A7A5A" stroke-width="1.5"/>
-  <text x="712" y="162" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">RUTA EN LA CONFIG</text>
+  <text x="712" y="162" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">RUTA EN LA CONFIG</text>
   <line x1="84" y1="198" x2="870" y2="198" stroke="rgba(237,234,230,.08)" stroke-width="1"/>
 
   <text x="88" y="232" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#EDEAE6">Golden Pass-ta-key</text>
   <text x="88" y="250" font-family="'Share Tech Mono', monospace" font-size="10" fill="#8A7A5A">REGLA 3</text>
-  <text x="290" y="232" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.72)">Lectura de memoria de chrome.exe</text>
-  <text x="540" y="232" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.72)">Sysmon 10</text>
+  <text x="290" y="232" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.80)">Lectura de memoria de chrome.exe</text>
+  <text x="540" y="232" font-family="'Share Tech Mono', monospace" font-size="11" fill="rgba(237,234,230,.80)">Sysmon 10</text>
   <circle cx="696" cy="228" r="5" fill="#8A7A5A"/>
   <text x="712" y="232" font-family="'Share Tech Mono', monospace" font-size="10" fill="#EDEAE6">DE SERIE</text>
   <line x1="84" y1="268" x2="870" y2="268" stroke="rgba(237,234,230,.28)" stroke-width="1"/>
 
   <circle cx="92" cy="298" r="5" fill="none" stroke="#8A7A5A" stroke-width="1.5"/>
-  <text x="108" y="302" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.72)">Hay que habilitarlo antes: dos de los tres ataques no dejan rastro con la configuración por defecto.</text>
-  <text x="88" y="340" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.46)">COBERTURA DE DETECCIÓN EN EL ENDPOINT · CHROME SOBRE WINDOWS</text>
+  <text x="108" y="302" font-family="'Poppins', sans-serif" font-size="12" fill="rgba(237,234,230,.80)">Hay que habilitarlo antes: dos de los tres ataques no dejan rastro con la configuración por defecto.</text>
+  <text x="88" y="340" font-family="'Share Tech Mono', monospace" font-size="10" fill="rgba(237,234,230,.56)">COBERTURA DE DETECCIÓN EN EL ENDPOINT · CHROME SOBRE WINDOWS</text>
 </svg>
 <figcaption>Lo que decide si una regla sirve no es la regla, es si la fuente existe. El círculo relleno marca la única señal disponible sin tocar nada; los dos huecos exigen trabajo previo de configuración.</figcaption>
 </figure>
