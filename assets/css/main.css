@@ -39,12 +39,13 @@ html,body{
   color:var(--accent);text-transform:uppercase;text-align:left;
 }
 
-/* Cabecera de la portada — centrada, a diferencia de la de los artículos */
-header{margin-top:clamp(64px,12vh,120px);text-align:center}
+/* Cabecera de la portada — alineada a la izquierda, igual que la de los
+   artículos: el eje vertical único es lo que sostiene el aire editorial */
+header{margin-top:clamp(64px,12vh,120px);text-align:left}
 header h1{
   font-family:'Instrument Serif',Georgia,serif;font-weight:400;
   font-size:clamp(38px,6vw,64px);letter-spacing:0;
-  color:var(--ink);line-height:1.05;text-wrap:balance;
+  color:var(--ink);line-height:1.05;max-width:18ch;text-wrap:balance;
 }
 header .role{
   font-size:11px;letter-spacing:.16em;font-weight:600;
@@ -52,11 +53,11 @@ header .role{
 }
 header .intro{
   font-weight:400;font-size:18px;color:var(--body);
-  margin:22px auto 0;line-height:1.65;max-width:62ch;
+  margin:22px 0 0;line-height:1.65;max-width:62ch;
 }
 
 /* Navegación de la portada */
-nav{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center}
+nav{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:flex-start}
 nav a{
   font-size:13px;letter-spacing:.01em;
   color:var(--body);text-decoration:none;
