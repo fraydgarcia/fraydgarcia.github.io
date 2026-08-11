@@ -85,7 +85,20 @@ nav .sep{color:var(--muted);font-size:13px}
   transition:border-color .2s ease,background .2s ease;
 }
 a.row:hover{border-color:var(--accent);background:var(--panel)}
+
+/* Las fichas que llevan a algún sitio se distinguen en reposo, no solo al
+   pasar el ratón: sin esto, un proyecto cerrado y un área de trabajo se ven
+   idénticos. El hover pasa de acento a tinta como gesto de activación. */
+a.row .row-name{color:var(--accent)}
+a.row .row-name::after{
+  content:"";display:inline-block;vertical-align:middle;
+  width:.42em;height:.42em;margin-left:.5em;margin-top:-.18em;
+  border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;
+  transform:rotate(45deg);
+  transition:transform .2s ease;
+}
 a.row:hover .row-name{color:var(--ink)}
+a.row:hover .row-name::after{transform:rotate(45deg) translate(1.5px,-1.5px)}
 
 .row-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
 .row-name{
