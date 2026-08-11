@@ -1,7 +1,7 @@
 ---
 layout: research
 title: "El plazo de CISA pasó de 21 días a 3"
-date: 2026-08-05
+date: 2026-08-06
 author: "Fray García"
 image: "/assets/img/og/kev-plazos.png"
 lead: "Durante tres años, casi todo lo que entraba en el catálogo KEV venía con 21 días para parchear. En 2026 ese número se ha desplomado a 3. El catálogo entero — 1.660 entradas — lo enseña mes a mes."
