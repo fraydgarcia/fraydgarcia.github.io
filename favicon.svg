@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Fray Garcia">
+  <style>.marca{fill:#0A0A0A}@media(prefers-color-scheme:dark){.marca{fill:#FFFFFF}}</style>
+  <mask id="nube">
+    <rect width="512" height="512" fill="#000"/>
+    <rect x="96" y="268" width="304" height="88" rx="44.0" fill="#fff"/>
+    <circle cx="232" cy="236" r="92" fill="#fff"/><circle cx="330" cy="262" r="66" fill="#fff"/><circle cx="150" cy="272" r="56" fill="#fff"/>
+    <polygon points="202.0,225.0 248.0,212.0 294.0,225.0 294.0,270.0 248.0,328.0 202.0,270.0" fill="#000"/>
+  </mask>
+  <rect class="marca" width="512" height="512" mask="url(#nube)"/>
+</svg>
