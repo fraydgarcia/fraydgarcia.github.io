@@ -47,9 +47,15 @@ header h1{
   font-size:clamp(38px,6vw,64px);letter-spacing:0;
   color:var(--ink);line-height:1.05;max-width:18ch;text-wrap:balance;
 }
+/* El rol es una frase, no una etiqueta: en versalitas espaciadas se volvía
+   ilegible, así que va compuesto como subtítulo y la ubicación se separa */
 header .role{
+  font-size:19px;font-weight:400;line-height:1.5;
+  color:var(--body);margin-top:20px;max-width:44ch;text-wrap:balance;
+}
+header .ubicacion{
   font-size:11px;letter-spacing:.16em;font-weight:600;
-  color:var(--accent);text-transform:uppercase;margin-top:18px;line-height:2;
+  color:var(--accent);text-transform:uppercase;margin-top:14px;
 }
 header .intro{
   font-weight:400;font-size:18px;color:var(--body);
