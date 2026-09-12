@@ -4,7 +4,8 @@ layout: default
 
   <header class="col">
     <h1>Fray García</h1>
-    <p class="role">Administrador de sistemas en transición a la nube (AWS), con foco en seguridad.</p>
+    <p class="role">Profesional de ciberseguridad con base en administración de sistemas y foco en seguridad ofensiva.</p>
+    <p class="intro">Estoy retomando la ruta de <strong>penetration testing</strong> con CPTS como objetivo. Trabajo desde los fundamentos —redes, Linux, Windows, web y Active Directory— y los conecto con la evidencia que un ataque deja detrás. AWS es una superficie más dentro de ese recorrido.</p>
     <p class="ubicacion">Lanzarote, España</p>
     <nav>
       <a href="https://github.com/fraydgarcia">GitHub</a><span class="sep">/</span>
@@ -14,66 +15,46 @@ layout: default
     </nav>
   </header>
 
-  {% if site.posts.size > 0 %}
   <div class="rule"></div>
 
   <section class="col">
-    <div class="label">Investigación</div>
-    <div class="recent">
-      {% for post in site.posts limit: 3 %}
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      {% endfor %}
-      {% if site.posts.size > 3 %}
-      <a class="more" href="{{ '/research/' | relative_url }}">Ver todo</a>
-      {% endif %}
-    </div>
-  </section>
-  {% endif %}
-
-  <div class="rule"></div>
-
-  <section class="col">
-    <div class="label">Cloud security</div>
+    <div class="label">Seguridad ofensiva</div>
     <div class="rows">
 
       <div class="row">
         <div class="row-head">
-          <span class="row-name">Identidad y permisos en AWS</span>
+          <span class="row-name">Ruta CPTS: metodología, Active Directory y post-explotación</span>
           <span class="row-meta">En curso</span>
         </div>
         <div class="row-desc">
-          Un rol que puede asumir otro rol que puede escribir una política es el mismo problema que
-          un usuario con <em>GenericWrite</em> sobre un grupo privilegiado: un grafo de permisos que
-          nadie ha mirado entero. Trabajo esas rutas de escalada en IAM sobre cuenta propia,
-          apoyándome en lo que ya sé de abuso de ACL en Active Directory.
+          Retomo la formación práctica en pruebas de penetración con una metodología reproducible:
+          enumeración, validación de superficie, acceso inicial, escalada, pivoting y evidencias.
+          Active Directory es un área central: Kerberos, ACL abuse, relaciones de confianza y rutas
+          de privilegio.
         </div>
-        <div class="row-stack">IAM · Políticas y roles · S3 bucket policies · VPC · CloudTrail</div>
+        <div class="row-stack">CPTS · Nmap · Burp Suite · Linux · Windows · Active Directory · BloodHound · NetExec · Python/Bash</div>
       </div>
 
-      <div class="row">
+      <a class="row" href="https://github.com/fraydgarcia/htb-writeups">
         <div class="row-head">
-          <span class="row-name">Servicio de metadatos (IMDS) y SSRF a credenciales</span>
-          <span class="row-meta">Documentado</span>
+          <span class="row-name">Writeups de Hack The Box</span>
+          <span class="row-meta">Continuo</span>
         </div>
         <div class="row-desc">
-          Cómo una petición del lado del servidor que llega a <em>169.254.169.254</em> se
-          convierte en credenciales temporales de la instancia, y qué hace realmente IMDSv2 para
-          cortarlo. Documentado junto a la enumeración inicial de AWS, Azure y GCP.
+          Laboratorios redactados como informes: superficie descubierta, razonamiento de
+          enumeración, acceso, escalada y evidencia. No publico soluciones de máquinas activas ni
+          flags, para respetar las reglas de la plataforma.
         </div>
-        <div class="row-stack">IMDSv1/v2 · SSRF · Credenciales temporales · Enumeración multinube</div>
-      </div>
+        <div class="row-stack">Web · Active Directory · Pivoting · Burp Suite · Metasploit · Informes</div>
+      </a>
 
     </div>
-    <p class="note">
-      Es el enfoque más reciente del perfil. Ese trabajo vive en notas propias y va saliendo a
-      <a href="{{ '/research/' | relative_url }}">Investigación</a> conforme está publicable.
-    </p>
   </section>
 
   <div class="rule"></div>
 
   <section class="col">
-    <div class="label">Blue team y detección</div>
+    <div class="label">Proyectos técnicos</div>
     <div class="rows">
 
       <a class="row" href="https://github.com/fraydgarcia/tfg-honeypot-turismo">
@@ -82,26 +63,27 @@ layout: default
           <span class="row-meta">2026</span>
         </div>
         <div class="row-desc">
-          Honeypot multi-servicio expuesto a Internet durante casi dos meses, instrumentado para que
-          cada interacción dejara señal: sesiones y comandos de atacante en Cowrie, alertas de red en
-          Suricata y todo correlacionado en Elastic. El resultado se mapeó a MITRE ATT&amp;CK para
-          convertir el ruido de fondo de Internet en recomendaciones que un alojamiento pequeño
-          pudiera aplicar. Proyecto de fin de ciclo, ya cerrado.
+          Proyecto de fin de ciclo: un honeypot multi-servicio expuesto a Internet durante casi dos
+          meses para observar actividad atacante real. Registré sesiones y comandos en Cowrie,
+          eventos de red en Suricata y evidencias correlacionadas en Elastic; después las mapeé a
+          MITRE ATT&amp;CK y las convertí en recomendaciones aplicables a un alojamiento pequeño.
         </div>
         <div class="row-stack">T-Pot · Docker · Cowrie · Suricata · Elastic · MITRE ATT&amp;CK</div>
       </a>
 
       <div class="row">
         <div class="row-head">
-          <span class="row-name">Ingeniería de detección y análisis SOC</span>
+          <span class="row-name">Laboratorio de seguridad cloud: IAM y rutas de privilegio</span>
           <span class="row-meta">En curso</span>
         </div>
         <div class="row-desc">
-          Escribir la contraparte defensiva de los ataques que ya tengo documentados: qué registro lo
-          delata, con qué regla se caza y qué se ve realmente en la telemetría. Manejo de incidentes,
-          registros de eventos de Windows, y reglas Sigma y YARA.
+          Un rol que puede asumir otro rol que puede escribir una política es el mismo problema que
+          un usuario con <em>GenericWrite</em> sobre un grupo privilegiado: un grafo de permisos que
+          nadie ha revisado entero. Estudio estas rutas de escalada en IAM sobre cuentas propias,
+          conectándolas con abuso de ACL en Active Directory. Es una superficie complementaria para
+          aplicar los mismos fundamentos de identidad, privilegios y escalada.
         </div>
-        <div class="row-stack">Sigma · YARA · Sysmon · Windows Event Logs · Splunk · Elastic</div>
+        <div class="row-stack">IAM · Roles · Políticas · S3 bucket policies · IMDS · SSRF</div>
       </div>
 
     </div>
@@ -110,27 +92,38 @@ layout: default
   <div class="rule"></div>
 
   <section class="col">
-    <div class="label">Base ofensiva</div>
+    <div class="label">Investigación técnica</div>
     <div class="rows">
 
-      <a class="row" href="https://github.com/fraydgarcia/htb-writeups">
+      <div class="row">
         <div class="row-head">
-          <span class="row-name">Writeups de Hack The Box</span>
-          <span class="row-meta">Continuo</span>
+          <span class="row-name">IMDS, SSRF y credenciales temporales en AWS</span>
+          <span class="row-meta">Documentado</span>
         </div>
         <div class="row-desc">
-          Writeups con formato de informe: superficie descubierta, acceso, escalada y evidencia,
-          explicando qué señal de enumeración justifica cada movimiento. Sin auto-exploits y sin flags.
+          Cómo una SSRF que alcanza <em>169.254.169.254</em> puede exponer credenciales temporales
+          de una instancia, y qué cambia IMDSv2 para evitarlo. Es uno de los casos prácticos donde
+          una técnica ofensiva se traduce en arquitectura y hardening.
         </div>
-        <div class="row-stack">Nmap · Burp Suite · Metasploit · BloodHound · NetExec</div>
-      </a>
+        <div class="row-stack">IMDSv1/v2 · SSRF · EC2 · IAM · Hardening</div>
+      </div>
 
     </div>
     <p class="note">
-      El lado ofensivo no se abandona: saber cómo se ejecuta un ataque es lo que permite decidir qué
-      merece la pena detectar. Los writeups de máquinas activas no se publican mientras siguen en
-      juego, porque va contra las reglas de la plataforma y estropea el reto para el resto.
+      Los artículos mantienen el rigor como parte del portfolio: investigación, fuentes y una
+      explicación útil del impacto técnico. Publico cuando el contenido está maduro y es seguro
+      compartirlo.
     </p>
+    {% if site.posts.size > 0 %}
+    <div class="recent">
+      {% for post in site.posts limit: 3 %}
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% endfor %}
+      {% if site.posts.size > 3 %}
+      <a class="more" href="{{ '/research/' | relative_url }}">Ver todo</a>
+      {% endif %}
+    </div>
+    {% endif %}
   </section>
 
   <div class="rule"></div>
@@ -143,24 +136,12 @@ layout: default
         <div class="row-desc">CIFP Zonzamas, Lanzarote. Mención honorífica en Seguridad y Alta Disponibilidad.</div>
       </div>
       <div class="row">
-        <div class="row-head"><span class="row-name">AWS Certified Cloud Practitioner</span><span class="row-meta">En curso</span></div>
-        <div class="row-desc">Amazon Web Services, CLF-C02.</div>
+        <div class="row-head"><span class="row-name">CPTS — Certified Penetration Testing Specialist</span><span class="row-meta">Retomado</span></div>
+        <div class="row-desc">Hack The Box. Ruta práctica de pruebas de penetración con énfasis en metodología, Active Directory y entornos reales.</div>
       </div>
       <div class="row">
-        <div class="row-head"><span class="row-name">CDSA — Certified Defensive Security Analyst</span><span class="row-meta">En curso</span></div>
-        <div class="row-desc">Hack The Box. Ruta de analista SOC: manejo de incidentes, SIEM, caza de amenazas y análisis forense.</div>
-      </div>
-      <div class="row">
-        <div class="row-head"><span class="row-name">CPTS — Certified Penetration Testing Specialist</span><span class="row-meta">En pausa</span></div>
-        <div class="row-desc">Hack The Box. Aparcada mientras el foco está en cloud y defensa.</div>
-      </div>
-      <div class="row">
-        <div class="row-head"><span class="row-name">Cursos y credenciales</span><span class="row-meta">2024 – 2025</span></div>
-        <div class="row-desc">
-          Cisco Networking Academy: Junior Cybersecurity Analyst, Cyber Threat Management,
-          Network Defense y Endpoint Security. Fortinet Certified Fundamentals in Cybersecurity.
-          IBM Cybersecurity Fundamentals. Laboratorio de Amazon VPC.
-        </div>
+        <div class="row-head"><span class="row-name">AWS Certified Solutions Architect – Associate</span><span class="row-meta">En curso</span></div>
+        <div class="row-desc">Amazon Web Services, SAA-C03. Arquitectura, IAM, redes, almacenamiento y diseño seguro en AWS.</div>
       </div>
     </div>
   </section>
