@@ -118,6 +118,14 @@ a.row:hover .row-name::after{transform:rotate(45deg) translate(1.5px,-1.5px)}
   color:var(--accent);margin-top:12px;text-transform:uppercase;
 }
 
+/* Sobre mí — prosa de sección, más aireada que una ficha */
+.about{
+  font-weight:400;font-size:17px;color:var(--body);
+  line-height:1.75;max-width:72ch;margin-top:20px;
+}
+.about:first-of-type{margin-top:24px}
+.about strong{font-weight:600;color:var(--ink)}
+
 /* Nota */
 .note{
   font-weight:400;font-size:15.5px;color:var(--muted);

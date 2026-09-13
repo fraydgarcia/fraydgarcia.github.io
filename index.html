@@ -51,6 +51,17 @@ layout: default
       </a>
 
     </div>
+    {% assign wus = site.writeups | sort: 'date' | reverse %}
+    {% if wus.size > 0 %}
+    <div class="recent">
+      {% for wu in wus limit: 4 %}
+      <a href="{{ wu.url | relative_url }}">{{ wu.box | default: wu.title }}</a>
+      {% endfor %}
+      {% if wus.size > 4 %}
+      <a class="more" href="{{ '/writeups/' | relative_url }}">Ver todos</a>
+      {% endif %}
+    </div>
+    {% endif %}
   </section>
 
   <div class="rule"></div>
@@ -135,6 +146,32 @@ layout: default
       {% endif %}
     </div>
     {% endif %}
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">Sobre mí</div>
+    <p class="about">
+      Soy titulado en ASIR y estoy construyendo mi carrera en seguridad ofensiva. Mi
+      foco actual es el <strong>penetration testing</strong>, con el CPTS como ruta de
+      formación práctica. La base la traigo de la administración de sistemas —redes,
+      Linux, Windows y Active Directory— y en los laboratorios trabajo el proceso
+      completo: enumeración, validación de superficie, acceso inicial, escalada de
+      privilegios, pivoting e informe.
+    </p>
+    <p class="about">
+      Me interesan especialmente las rutas de identidad y privilegio en Active
+      Directory, la seguridad web y el testing de infraestructura. AWS es una
+      superficie complementaria que estudio —IAM, credenciales temporales, IMDS,
+      SSRF—, no mi especialización. También valoro la parte defensiva: mi proyecto de
+      fin de ciclo fue un honeypot instrumentado que me enseñó a leer la actividad de
+      un atacante y la telemetría que hace falta para verla.
+    </p>
+    <p class="about">
+      Busco una primera oportunidad como pentester junior donde una base sólida de
+      sistemas y una forma de trabajar metódica cuenten tanto como los resultados.
+    </p>
   </section>
 
   <div class="rule"></div>
