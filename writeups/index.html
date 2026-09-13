@@ -1,0 +1,51 @@
+---
+layout: default
+title: Writeups
+description: "Writeups de máquinas de Hack The Box en formato informe: superficie descubierta, enumeración, acceso, escalada y evidencia. Sin flags ni soluciones de máquinas activas."
+---
+
+  <header class="col">
+    <h1>Writeups</h1>
+    <p class="intro">
+      Máquinas de Hack The Box redactadas como un informe, no como una lista de
+      comandos: la superficie que aparece, qué señal de enumeración justifica el
+      siguiente paso, el acceso, la escalada y la evidencia. La parte que no se
+      aprende copiando es el razonamiento entre paso y paso, y es lo que intento
+      dejar por escrito.
+    </p>
+  </header>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    {% assign writeups = site.writeups | sort: 'date' | reverse %}
+    {% if writeups.size > 0 %}
+    <div class="rows">
+      {% for wu in writeups %}
+      <a class="row" href="{{ wu.url | relative_url }}">
+        <div class="row-head">
+          <span class="row-name">{{ wu.title }}</span>
+          <span class="row-meta">
+            {%- if wu.dificultad %}{{ wu.dificultad }}{% elsif wu.so %}{{ wu.so }}{% endif -%}
+          </span>
+        </div>
+        {% if wu.lead %}<div class="row-desc">{{ wu.lead }}</div>{% endif %}
+        {% if wu.stack %}<div class="row-stack">{{ wu.stack }}</div>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="note">Todavía no hay writeups publicados.</p>
+    {% endif %}
+
+    <p class="note">
+      Solo publico máquinas retiradas o permanentes. Las de una <em>Season</em> en
+      juego no salen aquí mientras siguen activas —va contra las reglas de la
+      plataforma y le estropea el reto a quien la esté haciendo— y no incluyo flags
+      en ningún caso. El vault de notas donde nacen estos writeups es privado.
+    </p>
+  </section>
+
+  <footer>
+    <a href="{{ '/' | relative_url }}">Inicio</a>
+  </footer>
