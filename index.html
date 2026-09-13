@@ -4,12 +4,12 @@ layout: default
 
   <header class="col">
     <h1>Fray García</h1>
-    <p class="role">Profesional de ciberseguridad con base en administración de sistemas y foco en seguridad ofensiva.</p>
-    <p class="intro">Vengo de administrar sistemas —redes, Linux, Windows, Active Directory— y estoy retomando la ruta de <strong>penetration testing</strong> con el CPTS como objetivo. Me interesa lo que sostiene un ataque: qué expone un servicio, qué credencial reutilizada abre la siguiente puerta, dónde un permiso mal puesto se convierte en un camino a Administrator.</p>
+    <p class="role">Sistemas, AWS y seguridad con los pies en la tierra.</p>
+    <p class="intro">Este es mi cuaderno público. Vengo de Linux, Windows, redes y Active Directory; de aprender que una infraestructura no está terminada cuando arranca, sino cuando se entiende, se puede operar y aguanta una mala tarde. Ahora llevo esa forma de trabajar a AWS.</p>
+    <p class="note">Escribo sobre lo que estoy construyendo y lo que todavía tengo que averiguar: identidad, red, registros y los pequeños límites que evitan que un problema normal se convierta en uno serio.</p>
     <p class="ubicacion">Lanzarote, España</p>
     <nav>
       <a href="https://github.com/fraydgarcia">GitHub</a><span class="sep">/</span>
-      <a href="https://app.hackthebox.com/public/users/2163518">Hack The Box</a><span class="sep">/</span>
       <a href="https://linkedin.com/in/fraineltomas">LinkedIn</a><span class="sep">/</span>
       <a href="mailto:fraydgarcia@proton.me">Correo</a>
     </nav>
@@ -18,47 +18,65 @@ layout: default
   <div class="rule"></div>
 
   <section class="col">
-    <div class="label">Seguridad ofensiva</div>
+    <div class="label">Ahora</div>
     <div class="rows">
-
       <div class="row">
         <div class="row-head">
-          <span class="row-name">Ruta CPTS: metodología, Active Directory y post-explotación</span>
-          <span class="row-meta">En curso</span>
+          <span class="row-name">Una nube que siga teniendo sentido cuando algo falla</span>
+          <span class="row-meta">Laboratorio AWS</span>
         </div>
         <div class="row-desc">
-          Trabajo la parte que no cabe en una lista de comandos: leer la superficie que
-          aparece en la enumeración y decidir qué merece la pena tocar antes de tocarlo.
-          Acceso inicial, escalada, pivoting y el informe al final. Active Directory es el
-          eje —Kerberos, abuso de ACL, relaciones de confianza y las rutas de privilegio
-          que dibujan— porque es donde un permiso menor se encadena hasta el dominio.
+          Estoy construyendo laboratorios en AWS para entender la parte que de verdad sostiene
+          una carga: identidades y credenciales temporales, redes privadas, registros que sirvan
+          para investigar y límites que no dependan de que alguien se acuerde de una excepción.
+          Empiezo por IAM porque una policy mal puesta cambia toda la arquitectura, aunque el
+          diagrama siga pareciendo limpio.
         </div>
-        <div class="row-stack">CPTS · Nmap · Burp Suite · Linux · Windows · Active Directory · BloodHound · NetExec · Python/Bash</div>
+        <div class="row-stack">AWS · IAM · VPC · CloudTrail · IMDSv2 · Hardening</div>
       </div>
-
-      <a class="row" href="{{ '/writeups/' | relative_url }}">
+      <div class="row">
         <div class="row-head">
-          <span class="row-name">Writeups de Hack The Box</span>
-          <span class="row-meta">Continuo</span>
+          <span class="row-name">Primero arquitectura; después, seguridad especializada</span>
+          <span class="row-meta">SAA-C03 en curso</span>
         </div>
         <div class="row-desc">
-          Máquinas redactadas como un informe, no como una lista de comandos: la superficie
-          que aparece, qué señal justifica el siguiente paso, el acceso, la escalada y la
-          evidencia. Solo máquinas retiradas o permanentes; las de una Season en juego no
-          salen mientras siguen activas, y no incluyo flags.
+          Estoy preparando Solutions Architect – Associate como base de arquitectura. Después
+          vendrá Security – Specialty: identidad, protección de datos, detección y respuesta en
+          AWS. No estudio para coleccionar siglas; intento que cada bloque termine en un
+          laboratorio, una nota o una decisión técnica que pueda defender con mis palabras.
         </div>
-        <div class="row-stack">Web · Active Directory · Pivoting · Burp Suite · Metasploit · Informes</div>
-      </a>
-
+        <div class="row-stack">SAA-C03 · SCS-C03 · Arquitectura · Seguridad</div>
+      </div>
     </div>
-    {% assign wus = site.writeups | sort: 'date' | reverse %}
-    {% if wus.size > 0 %}
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col">
+    <div class="label">Investigación</div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Qué ocurre cuando una identidad hace más de lo que debía</span>
+          <span class="row-meta">Línea de trabajo</span>
+        </div>
+        <div class="row-desc">
+          Me interesa seguir el recorrido completo de una identidad: desde una aplicación que
+          necesita una credencial temporal hasta la evidencia que deja en CloudTrail. IMDSv2,
+          SSRF, trust policies y permisos mínimos son piezas del mismo problema: decidir qué
+          puede hacer un componente y tener una forma honesta de comprobar que no está haciendo
+          más.
+        </div>
+        <div class="row-stack">IAM · STS · EC2 · IMDSv2 · CloudTrail · Logging</div>
+      </div>
+    </div>
+    {% if site.posts.size > 0 %}
     <div class="recent">
-      {% for wu in wus limit: 4 %}
-      <a href="{{ wu.url | relative_url }}">{{ wu.box | default: wu.title }}</a>
+      {% for post in site.posts limit: 4 %}
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       {% endfor %}
-      {% if wus.size > 4 %}
-      <a class="more" href="{{ '/writeups/' | relative_url }}">Ver todos</a>
+      {% if site.posts.size > 4 %}
+      <a class="more" href="{{ '/research/' | relative_url }}">Ver todas las investigaciones</a>
       {% endif %}
     </div>
     {% endif %}
@@ -67,85 +85,34 @@ layout: default
   <div class="rule"></div>
 
   <section class="col">
-    <div class="label">Proyectos técnicos</div>
+    <div class="label">Proyectos</div>
     <div class="rows">
-
       <a class="row" href="https://github.com/fraydgarcia/tfg-honeypot-turismo">
         <div class="row-head">
           <span class="row-name">Honeypot instrumentado para una PYME turística</span>
           <span class="row-meta">2026</span>
         </div>
         <div class="row-desc">
-          Proyecto de fin de ciclo. Un honeypot multi-servicio que simula el alojamiento de
-          Lanzarote, expuesto a Internet sin publicidad ni indexación, instrumentado para que
-          cada interacción dejara señal: sesiones y comandos en Cowrie, tráfico en Suricata,
-          todo correlacionado en Elastic. La primera hora trajo casi 200 intentos de intrusión.
-          El trabajo fue convertir ese ruido de fondo en algo legible —mapeado a MITRE ATT&amp;CK—
-          y en recomendaciones que un hotel pequeño pueda aplicar de verdad.
+          Mi proyecto de fin de ciclo: un honeypot multi-servicio que simula el alojamiento de
+          Lanzarote y convierte cada interacción en señal. Cowrie recoge sesiones y comandos,
+          Suricata observa el tráfico y Elastic permite ordenar el ruido. El resultado está
+          mapeado a MITRE ATT&amp;CK y aterrizado en medidas que una pyme puede aplicar.
         </div>
         <div class="row-stack">T-Pot · Docker · Cowrie · Suricata · Elastic · MITRE ATT&amp;CK</div>
       </a>
-
       <a class="row" href="https://github.com/fraydgarcia/nmapparser">
         <div class="row-head">
           <span class="row-name">nmapparser — de la salida de Nmap al siguiente comando</span>
           <span class="row-meta">Herramienta</span>
         </div>
         <div class="row-desc">
-          Un parser en Python de mis escaneos de Nmap: extrae puertos y servicios, señala los
-          que suelen dar juego y sugiere por dónde seguir enumerando. Nació de repetir siempre
-          los mismos primeros pasos y querer llegar antes a lo que de verdad decide la máquina.
+          Un parser en Python para dejar de perder contexto entre la salida de un escaneo y la
+          siguiente comprobación. Extrae puertos y servicios, marca lo que merece revisión y
+          automatiza una parte pequeña, pero repetitiva, de la administración de superficie.
         </div>
-        <div class="row-stack">Python · Nmap · Enumeración · Automatización</div>
+        <div class="row-stack">Python · Nmap · Automatización · Inventario</div>
       </a>
-
-      <div class="row">
-        <div class="row-head">
-          <span class="row-name">Laboratorio de seguridad cloud: IAM y rutas de privilegio</span>
-          <span class="row-meta">En curso</span>
-        </div>
-        <div class="row-desc">
-          Un rol que puede asumir otro rol que puede escribir una política es el mismo problema
-          que un usuario con <em>GenericWrite</em> sobre un grupo privilegiado: un grafo de
-          permisos que nadie ha mirado entero. Estudio esas rutas de escalada en IAM sobre
-          cuentas propias, con los mismos ojos que uso para el abuso de ACL en Active Directory.
-        </div>
-        <div class="row-stack">IAM · Roles · Políticas · S3 bucket policies · IMDS · SSRF</div>
-      </div>
-
     </div>
-  </section>
-
-  <div class="rule"></div>
-
-  <section class="col">
-    <div class="label">Investigación técnica</div>
-    <div class="rows">
-
-      <div class="row">
-        <div class="row-head">
-          <span class="row-name">IMDS, SSRF y credenciales temporales en AWS</span>
-          <span class="row-meta">Documentado</span>
-        </div>
-        <div class="row-desc">
-          Una SSRF que alcanza <em>169.254.169.254</em> se lleva las credenciales temporales
-          de la instancia sin ejecutar una línea de código en la máquina. Aquí desgloso la
-          cadena y qué cambia exactamente IMDSv2 para cortarla.
-        </div>
-        <div class="row-stack">IMDSv1/v2 · SSRF · EC2 · IAM · Hardening</div>
-      </div>
-
-    </div>
-    {% if site.posts.size > 0 %}
-    <div class="recent">
-      {% for post in site.posts limit: 3 %}
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      {% endfor %}
-      {% if site.posts.size > 3 %}
-      <a class="more" href="{{ '/research/' | relative_url }}">Ver todo</a>
-      {% endif %}
-    </div>
-    {% endif %}
   </section>
 
   <div class="rule"></div>
@@ -153,45 +120,17 @@ layout: default
   <section class="col">
     <div class="label">Sobre mí</div>
     <p class="about">
-      Soy titulado en ASIR y estoy construyendo mi carrera en seguridad ofensiva. Mi
-      foco actual es el <strong>penetration testing</strong>, con el CPTS como ruta de
-      formación práctica. La base la traigo de la administración de sistemas —redes,
-      Linux, Windows y Active Directory— y en los laboratorios trabajo el proceso
-      completo: enumeración, validación de superficie, acceso inicial, escalada de
-      privilegios, pivoting e informe.
+      Soy administrador de sistemas y me estoy especializando en seguridad cloud. Antes de
+      pensar en AWS, aprendí a operar entornos Linux y Windows, redes y Active Directory: cosas
+      que no se arreglan con una presentación, sino entendiendo qué servicio depende de qué,
+      dónde mirar cuando falla y qué cambio no conviene hacer sin una vuelta atrás.
     </p>
     <p class="about">
-      Me interesan especialmente las rutas de identidad y privilegio en Active
-      Directory, la seguridad web y el testing de infraestructura. AWS es una
-      superficie complementaria que estudio —IAM, credenciales temporales, IMDS,
-      SSRF—, no mi especialización. También valoro la parte defensiva: mi proyecto de
-      fin de ciclo fue un honeypot instrumentado que me enseñó a leer la actividad de
-      un atacante y la telemetría que hace falta para verla.
+      En AWS estoy llevando esa misma forma de trabajar a IAM, VPC, hardening y logging. Mi
+      objetivo es crecer hacia Cloud Security y arquitectura cloud, con una base de sistemas que
+      me ayude a diseñar soluciones útiles, mantenibles y defendibles. Busco una primera
+      oportunidad en seguridad cloud, operaciones de seguridad o sistemas e infraestructura.
     </p>
-    <p class="about">
-      Busco una primera oportunidad como pentester junior donde una base sólida de
-      sistemas y una forma de trabajar metódica cuenten tanto como los resultados.
-    </p>
-  </section>
-
-  <div class="rule"></div>
-
-  <section class="col">
-    <div class="label">Formación</div>
-    <div class="rows">
-      <div class="row">
-        <div class="row-head"><span class="row-name">Técnico Superior en ASIR</span><span class="row-meta">2024 – 2026</span></div>
-        <div class="row-desc">CIFP Zonzamas, Lanzarote. Mención honorífica en Seguridad y Alta Disponibilidad.</div>
-      </div>
-      <div class="row">
-        <div class="row-head"><span class="row-name">CPTS — Certified Penetration Testing Specialist</span><span class="row-meta">Retomado</span></div>
-        <div class="row-desc">Hack The Box. Ruta práctica de pruebas de penetración con énfasis en metodología, Active Directory y entornos reales. En curso, aún sin examinar.</div>
-      </div>
-      <div class="row">
-        <div class="row-head"><span class="row-name">AWS Certified Solutions Architect – Associate</span><span class="row-meta">En curso</span></div>
-        <div class="row-desc">Amazon Web Services, SAA-C03. Arquitectura, IAM, redes, almacenamiento y diseño seguro en AWS.</div>
-      </div>
-    </div>
   </section>
 
   <footer>

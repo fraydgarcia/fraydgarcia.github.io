@@ -1,5 +1,5 @@
 title: "Fray García"
-description: "Offensive Security junior con base en Systems Administration. Penetration Testing, Active Directory, seguridad web, writeups de Hack The Box y ruta CPTS desde Lanzarote."
+description: "Administrador de sistemas orientado a Cloud Security en AWS —IAM, VPC, hardening y logging— con una base técnica que define cómo aseguro la infraestructura. Investigación, proyectos y ruta hacia AWS SAA/SCS. Lanzarote."
 author: "Fray García"
 url: "https://fraydgarcia.github.io"
 lang: es
@@ -10,7 +10,7 @@ permalink: /research/:title/
 # Los writeups viven en /writeups/<slug>/
 collections:
   writeups:
-    output: true
+    output: false
     permalink: /writeups/:name/
 
 # Formato de fecha en español, resuelto en las plantillas
@@ -25,6 +25,7 @@ kramdown:
 exclude:
   - README.md
   - _posts/_PLANTILLA.md.txt
+  - writeups
 
 defaults:
   - scope:
