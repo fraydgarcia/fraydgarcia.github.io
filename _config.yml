@@ -1,0 +1,40 @@
+title: "Fray García"
+description: "Administrador de sistemas orientado a Blue Team / SOC: detección y análisis de logs sobre una base de Linux, Windows, redes y Active Directory. Lanzarote."
+author: "Fray García"
+url: "https://fraydgarcia.github.io"
+lang: es
+
+# Los artículos viven en /research/<slug>/
+permalink: /research/:title/
+
+# Los writeups viven en /writeups/<slug>/
+collections:
+  writeups:
+    output: false
+    permalink: /writeups/:name/
+
+# Formato de fecha en español, resuelto en las plantillas
+date_format: "%-d de %B de %Y"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+exclude:
+  - README.md
+  - _posts/_PLANTILLA.md.txt
+  - writeups
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "research"
+  - scope:
+      path: ""
+      type: "writeups"
+    values:
+      layout: "writeup"

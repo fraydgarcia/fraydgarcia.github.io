@@ -1,0 +1,438 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ══════════════════════════════════════════════════
+   Tema del sitio: editorial claro. Todo el portfolio
+   comparte la misma base tipográfica y de color que
+   los artículos.
+
+   Instrument Serif sostiene los titulares grandes en
+   peso 400; a partir del H3 toma el relevo Inter en
+   negrita, porque la serif pierde carácter en cuerpos
+   pequeños.
+   ══════════════════════════════════════════════════ */
+
+:root{
+  --ground:#FFFFFF;
+  --panel:#F0F3F6;
+  --ink:#0A0A0A;
+  --body:#5C6166;
+  --muted:#6F7376;
+  --accent:#6B5D40;
+  --rule:#DADCDE;
+  --rule-soft:#EBEEF1;
+  --radio:8px;
+}
+
+html{scroll-behavior:smooth}
+html,body{
+  background:var(--ground);color:var(--body);min-height:100vh;
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{display:flex;flex-direction:column;align-items:center;width:100%;padding:0 24px}
+.col{width:min(1000px,92vw)}
+
+/* Etiquetas de sección */
+.label{
+  font-size:11px;letter-spacing:.16em;font-weight:600;
+  color:var(--accent);text-transform:uppercase;text-align:left;
+}
+
+/* Cabecera de la portada — alineada a la izquierda, igual que la de los
+   artículos: el eje vertical único es lo que sostiene el aire editorial */
+header{margin-top:clamp(64px,12vh,120px);text-align:left}
+header h1{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(38px,6vw,64px);letter-spacing:0;
+  color:var(--ink);line-height:1.05;max-width:18ch;text-wrap:balance;
+}
+/* El rol es una frase, no una etiqueta: en versalitas espaciadas se volvía
+   ilegible, así que va compuesto como subtítulo y la ubicación se separa */
+header .role{
+  font-size:19px;font-weight:400;line-height:1.5;
+  color:var(--body);margin-top:20px;max-width:44ch;text-wrap:balance;
+}
+header .ubicacion{
+  font-size:11px;letter-spacing:.16em;font-weight:600;
+  color:var(--accent);text-transform:uppercase;margin-top:14px;
+}
+header .intro{
+  font-weight:400;font-size:18px;color:var(--body);
+  margin:22px 0 0;line-height:1.65;max-width:62ch;
+}
+
+/* Navegación de la portada */
+nav{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:flex-start}
+nav a{
+  font-size:13px;letter-spacing:.01em;
+  color:var(--body);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:2px;
+  transition:color .2s ease,border-color .2s ease;
+}
+nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+nav .sep{color:var(--muted);font-size:13px}
+
+/* Filete separador */
+.rule{width:100%;height:1px;background:var(--rule);margin:56px 0 44px}
+
+/* Filas — fichas con borde, al modo de un listado editorial */
+.rows{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.row{
+  width:100%;padding:22px 24px;
+  background:var(--ground);border:1px solid var(--rule);border-radius:var(--radio);
+  text-decoration:none;display:block;
+  transition:border-color .2s ease,background .2s ease;
+}
+a.row:hover{border-color:var(--accent);background:var(--panel)}
+
+/* Las fichas que llevan a algún sitio se distinguen en reposo, no solo al
+   pasar el ratón: sin esto, un proyecto cerrado y un área de trabajo se ven
+   idénticos. El hover pasa de acento a tinta como gesto de activación. */
+a.row .row-name{color:var(--accent)}
+a.row .row-name::after{
+  content:"";display:inline-block;vertical-align:middle;
+  width:.42em;height:.42em;margin-left:.5em;margin-top:-.18em;
+  border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;
+  transform:rotate(45deg);
+  transition:transform .2s ease;
+}
+a.row:hover .row-name{color:var(--ink)}
+a.row:hover .row-name::after{transform:rotate(45deg) translate(1.5px,-1.5px)}
+
+.row-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.row-name{
+  font-weight:600;font-size:17px;color:var(--ink);
+  transition:color .25s ease;
+}
+.row-meta{
+  font-size:11px;letter-spacing:.12em;
+  color:var(--muted);text-transform:uppercase;white-space:nowrap;flex-shrink:0;
+}
+.row-desc{
+  font-weight:400;font-size:16px;color:var(--body);
+  margin-top:10px;line-height:1.65;max-width:82ch;
+}
+.row-stack{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.06em;
+  color:var(--accent);margin-top:12px;text-transform:uppercase;
+}
+
+/* Sobre mí — prosa de sección, más aireada que una ficha */
+.about{
+  font-weight:400;font-size:17px;color:var(--body);
+  line-height:1.75;max-width:72ch;margin-top:20px;
+}
+.about:first-of-type{margin-top:24px}
+.about strong{font-weight:600;color:var(--ink)}
+
+/* Nota */
+.note{
+  font-weight:400;font-size:15.5px;color:var(--muted);
+  line-height:1.7;margin-top:26px;text-align:left;max-width:82ch;
+}
+.note a{
+  color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--rule);
+  transition:text-decoration-color .2s ease;
+}
+.note a:hover{text-decoration-color:var(--accent)}
+
+footer{
+  margin:72px 0 56px;text-align:left;
+  font-size:13px;color:var(--muted);
+}
+footer a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule)}
+footer a:hover{color:var(--ink);text-decoration-color:var(--accent)}
+
+@media(max-width:520px){
+  .row-head{flex-direction:column;gap:6px}
+  .row-meta{white-space:normal}
+}
+
+/* Navegación de secciones, arriba de la portada */
+.topnav{
+  display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:flex-end;
+  margin-top:28px;
+}
+.topnav a{border-bottom-color:transparent}
+.topnav + header{margin-top:clamp(40px,8vh,88px)}
+
+/* El rol se parte por las piezas, no en mitad de una */
+header .role span{white-space:nowrap}
+
+/* Áreas de trabajo (y contacto): rejilla de etiqueta + stack */
+.areas{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px 28px;margin-top:40px;padding-top:28px;border-top:1px solid var(--rule-soft);
+}
+.areas dt{
+  font-size:11px;letter-spacing:.16em;font-weight:600;
+  color:var(--accent);text-transform:uppercase;
+}
+.areas dd{font-size:14px;line-height:1.55;color:var(--ink);margin-top:6px}
+.areas.contacto{border-top:0;padding-top:0;margin-top:24px}
+.areas a{
+  color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--rule);transition:text-decoration-color .2s ease;
+}
+.areas a:hover{text-decoration-color:var(--accent)}
+
+/* Enlaces dentro de una ficha que no es enlace entera */
+.row-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px}
+.row-links a{
+  font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:2px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.row-links a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+
+/* Espacio entre la nota, el listado y la línea de trabajo de Investigación */
+#investigacion .note{margin-top:16px}
+#investigacion .rows + .recent{margin-top:16px}
+#investigacion .recent + .rows{margin-top:28px}
+
+/* Enlaces de investigación en la portada */
+.recent{margin-top:22px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.recent a{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15;
+  color:var(--ink);text-decoration:none;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:border-color .25s ease;
+}
+.recent a:hover{border-bottom-color:var(--accent)}
+.recent .more{
+  font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;font-weight:600;
+  text-transform:uppercase;border-bottom-color:transparent;
+  color:var(--accent);margin-top:6px;
+}
+.recent .more:hover{border-bottom-color:var(--accent)}
+
+/* ══════════════════════════════════════════════════
+   ARTÍCULO DE INVESTIGACIÓN
+   ══════════════════════════════════════════════════ */
+
+.article{width:min(1000px,92vw)}
+
+/* Cabecera */
+.article-header{text-align:left;margin-top:clamp(56px,10vh,100px)}
+.article-header h1{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(34px,5.2vw,56px);letter-spacing:0;
+  color:var(--ink);line-height:1.05;max-width:22ch;text-wrap:balance;
+}
+.article-byline{
+  font-weight:500;font-size:14px;letter-spacing:.01em;
+  color:var(--muted);margin-top:20px;
+}
+.article-lead{
+  font-weight:400;font-size:20px;line-height:1.5;
+  color:var(--body);margin-top:20px;max-width:64ch;
+}
+.article-stack{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--accent);margin-top:18px;
+}
+
+/* Índice — display:block y las tipografías explícitas anulan las reglas
+   base de nav/nav a, pensadas para la navegación de la portada */
+.toc{
+  display:block;margin:40px 0 52px;padding:22px 28px 26px;
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--radio);
+  font-size:15px;line-height:1.75;
+}
+.toc-title{
+  font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;
+}
+.toc-list{list-style:decimal;margin:0 0 0 22px;padding:0}
+.toc-list>li{margin-bottom:5px;color:var(--muted)}
+.toc a{
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:400;
+  letter-spacing:normal;text-transform:none;
+  color:var(--body);text-decoration:none;
+  border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease;
+}
+.toc a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+.toc-sub{list-style:none;margin:3px 0 9px 0;padding:0}
+.toc-sub li{margin-bottom:2px}
+.toc-sub a{font-size:14px;color:var(--body)}
+.toc-sub a::before{content:"— ";color:var(--accent)}
+
+/* Cuerpo */
+.article-body{margin-top:8px;max-width:70ch}
+.article-body h2{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(28px,4.2vw,42px);
+  color:var(--ink);letter-spacing:0;line-height:1.08;
+  margin:64px 0 20px;scroll-margin-top:28px;text-wrap:balance;
+}
+.article-body h3{
+  font-family:'Inter',sans-serif;font-weight:700;font-size:18.4px;
+  color:var(--ink);letter-spacing:-.005em;
+  margin:40px 0 12px;scroll-margin-top:28px;
+}
+.article-body p{
+  font-weight:400;font-size:17px;color:var(--body);
+  line-height:1.65;margin-bottom:22px;
+}
+.article-body ul,.article-body ol{margin:0 0 24px 20px}
+.article-body li{
+  font-weight:400;font-size:17px;color:var(--body);
+  line-height:1.65;margin-bottom:10px;
+}
+.article-body li::marker{color:var(--accent)}
+.article-body strong{font-weight:600;color:var(--ink)}
+.article-body em{font-style:italic;color:var(--body)}
+.article-body a{
+  color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--rule);
+  transition:text-decoration-color .2s ease;
+}
+.article-body a:hover{text-decoration-color:var(--accent)}
+
+.article-body blockquote{
+  border-left:2px solid var(--accent);padding:4px 0 4px 24px;margin:0 0 26px;
+  color:var(--ink);font-size:19px;line-height:1.55;
+}
+.article-body blockquote p{margin-bottom:0;color:inherit;font-size:inherit;line-height:inherit}
+
+/* Código */
+.article-body code{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.86em;
+  background:var(--panel);padding:2px 6px;border-radius:3px;
+  color:var(--ink);
+}
+.article-body pre{
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--radio);
+  padding:18px 20px;overflow-x:auto;margin:0 0 28px;
+}
+.article-body pre code{background:none;padding:0;font-size:14px;line-height:1.7;color:#24292F}
+
+/* Tablas: anchas y densas; scroll horizontal solo cuando no caben */
+.article-body table{
+  width:100%;border-collapse:collapse;margin:0 0 30px;
+  font-size:15px;line-height:1.6;
+}
+.article-body th{
+  font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);font-weight:600;
+  text-align:left;padding:10px 16px 10px 0;
+  border-bottom:1px solid var(--rule);
+}
+.article-body td{
+  padding:12px 16px 12px 0;border-bottom:1px solid var(--rule-soft);
+  color:var(--body);vertical-align:top;
+}
+@media(max-width:760px){
+  .article-body table{display:block;overflow-x:auto;font-size:14px}
+  .article-body th,.article-body td{min-width:7.5rem;padding-right:12px}
+  .article-body td code{white-space:nowrap}
+}
+
+/* Figuras */
+.article-body figure{margin:40px 0;text-align:center}
+.article-body figure img{
+  max-width:100%;height:auto;display:block;margin:0 auto;
+  border:1px solid var(--rule);border-radius:var(--radio);
+}
+.article-body figure svg{width:100%;height:auto;display:block}
+.article-body figcaption{
+  font-size:14px;color:var(--muted);margin-top:14px;line-height:1.6;
+  text-align:left;
+}
+
+/* Diagramas en HTML: texto a tamaño de lectura, no escalado como un SVG */
+.article-body figure.diagrama{text-align:left}
+.article-body figure.diagrama ol{margin:0}
+.article-body figure.diagrama li{margin-bottom:0;font-size:15px}
+
+/* Cadena de pasos: qué hace el atacante y qué queda en los logs */
+.cadena{list-style:none;margin:0;padding:0}
+.cadena-head,.cadena li{
+  display:grid;grid-template-columns:44px minmax(0,1.25fr) minmax(0,1fr);gap:20px;
+}
+.cadena-head{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
+  padding-bottom:10px;border-bottom:1px solid var(--rule);
+}
+.cadena li{padding:16px 0;border-bottom:1px solid var(--rule-soft);align-items:baseline;margin:0}
+.cadena li:last-child{border-bottom-color:var(--rule)}
+.cadena-n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;color:var(--accent)}
+.cadena-que strong{display:block;font-size:15.5px;line-height:1.45}
+.cadena-que span{display:block;font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:3px}
+.cadena-log{position:relative;padding-left:20px;font-size:14.5px;line-height:1.5;color:var(--body)}
+.cadena-log::before{
+  content:"";position:absolute;left:0;top:.42em;width:10px;height:10px;border-radius:50%;
+  background:var(--accent);
+}
+.cadena-log.sin-rastro{color:var(--muted)}
+.cadena-log.sin-rastro::before{background:transparent;border:1.5px solid #9AA0A6;box-sizing:border-box}
+
+/* Línea temporal horizontal */
+.cronologia{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:20px;
+}
+.cronologia li{position:relative;padding-top:30px;margin:0}
+.cronologia li::before{
+  content:"";position:absolute;top:6px;left:0;right:-20px;height:1px;background:var(--rule);
+}
+.cronologia li:nth-child(4)::before{right:0}
+.crono-punto{
+  position:absolute;top:0;left:0;width:13px;height:13px;border-radius:50%;
+  border:1.5px solid var(--accent);background:var(--ground);box-sizing:border-box;
+}
+.cronologia .hito .crono-punto{background:var(--accent)}
+.crono-fecha{
+  display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+}
+.crono-titulo{display:block;font-weight:600;color:var(--ink);font-size:15px;line-height:1.4;margin-top:6px}
+.crono-nota{display:block;font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:3px}
+.cronologia .crono-tramo{
+  grid-column:1 / 3;margin-right:-20px;margin-top:24px;padding:12px 0 0;
+  border-top:1.5px solid var(--accent);font-size:14px;line-height:1.5;color:var(--body);
+  white-space:nowrap;
+}
+.cronologia .crono-tramo::before,.cronologia .crono-tramo::after{
+  content:"";position:absolute;top:-6px;width:1.5px;height:11px;background:var(--accent);
+}
+.cronologia .crono-tramo::before{left:0}
+.cronologia .crono-tramo::after{right:0;left:auto}
+
+@media(max-width:640px){
+  .cadena-head{display:none}
+  .cadena li{grid-template-columns:32px minmax(0,1fr);row-gap:10px}
+  .cadena-log{grid-column:2}
+  .cronologia{grid-template-columns:1fr;row-gap:22px}
+  .cronologia li{padding:0 0 0 30px}
+  .cronologia li::before{top:16px;bottom:-22px;left:6px;right:auto;width:1px;height:auto}
+  .cronologia li:nth-child(4)::before{display:none}
+  .crono-punto{top:2px}
+  .cronologia .crono-tramo{grid-column:1;margin:0;padding:12px 0 0 0;white-space:normal}
+}
+
+/* Referencias */
+.article-body .refs{counter-reset:r;list-style:none;margin-left:0}
+.article-body .refs li{
+  font-size:15px;line-height:1.7;color:var(--body);
+  padding-left:28px;position:relative;
+}
+.article-body .refs li::before{
+  content:counter(r) ".";counter-increment:r;position:absolute;left:0;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--accent);
+}
+
+/* Pie de artículo */
+.article-nav{
+  display:flex;justify-content:space-between;gap:20px;
+  margin:80px 0 80px;padding-top:28px;border-top:1px solid var(--rule);
+}
+.article-nav a{
+  font-size:13px;letter-spacing:.01em;
+  color:var(--muted);text-decoration:none;
+  border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease;
+}
+.article-nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}

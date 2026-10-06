@@ -1,0 +1,82 @@
+---
+layout: default
+---
+<article class="article">
+
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <p class="article-byline">
+      {%- if page.plataforma %}{{ page.plataforma }}{% endif -%}
+      {%- if page.so %} &middot; {{ page.so }}{% endif -%}
+      {%- if page.dificultad %} &middot; {{ page.dificultad }}{% endif -%}
+      &middot; Protegido
+    </p>
+    {% if page.lead %}<p class="article-lead">{{ page.lead }}</p>{% endif %}
+    {% if page.stack %}<p class="article-stack">{{ page.stack }}</p>{% endif %}
+  </header>
+
+  <div class="toc" style="display:block">
+    <p class="toc-title">Writeup protegido</p>
+    <p style="font-size:15px;line-height:1.7;color:var(--body);margin:0 0 16px">
+      Este writeup se abre con una passphrase. El contenido viaja cifrado (AES-GCM) y
+      se descifra en tu navegador; el texto en claro no está en el repositorio. Si te
+      hace falta el acceso, pídemelo por correo.
+    </p>
+    <form id="unlock" autocomplete="off" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <label for="pass" style="position:absolute;left:-9999px">Passphrase</label>
+      <input id="pass" type="password" placeholder="passphrase"
+             style="flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--rule);border-radius:var(--radio);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;background:var(--ground);color:var(--ink)">
+      <button type="submit"
+              style="padding:10px 18px;border:1px solid var(--accent);border-radius:var(--radio);background:var(--ground);color:var(--ink);font-size:13px;letter-spacing:.02em;cursor:pointer">Abrir</button>
+    </form>
+    <p id="err" role="alert" hidden style="color:#B4232A;font-size:14px;margin-top:12px">Passphrase incorrecta.</p>
+  </div>
+
+  <div class="article-body" id="content"></div>
+
+  <nav class="article-nav">
+    <a class="prev" href="{{ '/writeups/' | relative_url }}">&larr; Writeups</a>
+    <a class="next" href="{{ '/' | relative_url }}">Inicio &rarr;</a>
+  </nav>
+
+</article>
+
+<script>
+(function () {
+  var PACK = {
+    salt: "{{ page.salt }}",
+    iv: "{{ page.iv }}",
+    cipher: "{{ page.cipher }}",
+    iterations: {{ page.iterations | default: 250000 }}
+  };
+  function b64ToBytes(b64) {
+    var bin = atob(b64), out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  var form = document.getElementById('unlock');
+  var err = document.getElementById('err');
+  var content = document.getElementById('content');
+  var lock = form.closest('.toc');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    var pass = document.getElementById('pass').value;
+    try {
+      var enc = new TextEncoder();
+      var baseKey = await crypto.subtle.importKey(
+        'raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
+      var key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: b64ToBytes(PACK.salt), iterations: PACK.iterations, hash: 'SHA-256' },
+        baseKey, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      var plainBuf = await crypto.subtle.decrypt(
+        { name: 'AES-GCM', iv: b64ToBytes(PACK.iv) }, key, b64ToBytes(PACK.cipher));
+      content.innerHTML = new TextDecoder().decode(plainBuf);
+      lock.remove();
+    } catch (_) {
+      err.hidden = false;
+    }
+  });
+})();
+</script>

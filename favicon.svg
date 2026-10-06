@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Fray Garcia">
+  <style>.marca{fill:#0A0A0A}@media(prefers-color-scheme:dark){.marca{fill:#FFFFFF}}</style>
+  <g class="marca">
+    <rect x="96" y="268" width="304" height="88" rx="44.0"/>
+    <circle cx="232" cy="236" r="92"/><circle cx="330" cy="262" r="66"/><circle cx="150" cy="272" r="56"/>
+  </g>
+</svg>

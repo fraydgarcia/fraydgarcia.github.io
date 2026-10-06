@@ -1,0 +1,205 @@
+---
+layout: research
+title: "Qué recibe realmente una PYME turística expuesta a Internet"
+date: 2026-08-04
+lead: "Un honeypot multi-servicio simulando un alojamiento de Lanzarote, expuesto sin publicidad ni indexación. Casi 200 intentos de intrusión en menos de una hora."
+description: "Resultados de siete semanas de captura con un honeypot T-Pot que simula la infraestructura de una PYME hotelera: volumen, origen y naturaleza de los ataques recibidos."
+stack: "T-Pot · Cowrie · Dionaea · Sentrypeer · H0neytr4p · Tanner · Suricata · Elastic"
+author: "Fray García"
+image: "/assets/img/og/honeypot-pyme.png"
+toc:
+  - title: "Introducción"
+    id: introduccion
+  - title: "El montaje"
+    id: montaje
+  - title: "Resultados"
+    id: resultados
+    children:
+      - title: "El tiempo hasta el primer ataque"
+        id: primer-ataque
+      - title: "Volumen por sensor, en tres ventanas"
+        id: volumen-por-sensor
+      - title: "El sensor que no esperaba"
+        id: sip
+      - title: "Origen"
+        id: origen
+  - title: "Lectura de los datos"
+    id: lectura
+    children:
+      - title: "El ataque es indiscriminado, y por eso llega"
+        id: indiscriminado
+      - title: "El tiempo de exposición es la métrica que importa"
+        id: tiempo-exposicion
+      - title: "Lo que un escáner busca es lo barato"
+        id: lo-barato
+  - title: "Conclusiones"
+    id: conclusiones
+  - title: "Limitaciones"
+    id: limitaciones
+  - title: "Referencias"
+    id: referencias
+---
+
+## Introducción {#introduccion}
+
+Cuando se habla de ciberseguridad con una PYME hotelera, la conversación suele encallar en la misma frase: *"¿quién iba a querer atacarnos a nosotros?"*. Es una pregunta razonable. Un apartamento turístico de veinte plazas no guarda propiedad intelectual, no cotiza en bolsa y no aparece en las noticias.
+
+La respuesta habitual —"todo el mundo es un objetivo"— es cierta pero inútil, porque no se puede medir. Así que en lugar de repetirla, monté algo que pudiera responderla con datos: un **honeypot** que simulara la infraestructura típica de un alojamiento turístico de Lanzarote, lo expuse a Internet y conté lo que llegaba.
+
+Este artículo recoge lo que registró. La conclusión adelantada es que la pregunta está mal formulada: **nadie quiere atacarles a ellos en particular**, y eso es precisamente lo que hace que los ataquen.
+
+## El montaje {#montaje}
+
+La plataforma es [T-Pot](https://github.com/telekom-security/tpotce), una distribución que orquesta varios honeypots en contenedores Docker con una pila Elastic detrás para centralizar y visualizar los eventos.
+
+Desplegado sobre una instancia de **Oracle Cloud Free Tier**, con un dominio señuelo registrado a nombre de un alojamiento ficticio para que la superficie fuese coherente: si un atacante resolvía el nombre, encontraba algo que parecía un hotel pequeño.
+
+Los sensores activos y qué simulaba cada uno:
+
+| Honeypot | Superficie que simula |
+|---|---|
+| `Cowrie` | SSH y Telnet, con sesión interactiva completa |
+| `H0neytr4p` | Multi-protocolo, varios puertos |
+| `Tanner` | Aplicación web, vulnerabilidades HTTP/HTTPS |
+| `Ciscoasa` | Interfaz HTTPS de un firewall Cisco |
+| `Dionaea` | Captura de malware |
+
+Cowrie es el más informativo de todos: no solo registra el intento de autenticación, sino que **deja entrar** al atacante a un sistema de archivos falso y graba la sesión entera — qué comandos ejecuta, qué descarga, qué intenta hacer después.
+
+<figure>
+  <img src="/assets/img/research/tpot-inicio.png" alt="Pantalla de inicio de T-Pot con los accesos a Attack Map, Cyberchef, Elasticvue, Kibana y Spiderfoot">
+  <figcaption>La pantalla de entrada de T-Pot 24.04.1. Cada enlace es una herramienta distinta sobre el mismo conjunto de datos; el análisis de este artículo sale de Kibana.</figcaption>
+</figure>
+
+> El sistema se expuso sin ninguna campaña de publicidad, sin enviar la URL a nadie y sin indexación web. Nadie sabía que existía.
+
+## Resultados {#resultados}
+
+### El tiempo hasta el primer ataque {#primer-ataque}
+
+En **menos de 60 minutos** desde la exposición, el sistema registró **casi 200 intentos de intrusión automatizados**.
+
+Ese dato, por sí solo, responde a la pregunta del principio mejor que cualquier argumento. No hubo un periodo de gracia, ni una fase en la que alguien "descubriera" el servidor. La superficie de ataque de Internet se recorre de forma continua y exhaustiva, y un servidor nuevo entra en las listas en cuestión de minutos.
+
+En las **primeras 24 horas**: **417 ataques** registrados.
+
+### Volumen por sensor, en tres ventanas {#volumen-por-sensor}
+
+Aquí conviene ser preciso con algo que se malinterpreta con facilidad, porque yo mismo lo presenté mal en una primera versión de este artículo: **las cifras de un honeypot no significan nada sin decir de qué ventana temporal son.**
+
+En las **primeras 48 horas** de exposición, el reparto por sensor era este:
+
+| Honeypot | Eventos | Servicio |
+|---|---|---|
+| `H0neytr4p` | ~16.000 | Multi-protocolo |
+| `Cowrie` | ~11.000 | SSH / Telnet |
+| `Tanner` | ~5.000 | HTTP / HTTPS |
+| `Ciscoasa` | ~1.000 | HTTPS (firewall) |
+| **Total 48 h** | **~33.000** | |
+
+Dos meses después, con el sistema ya asentado en las listas de escaneo, una ventana de **24 horas** sola registraba más que aquellas 48 primeras:
+
+<figure>
+  <img src="/assets/img/research/tpot-24h.png" alt="Panel de T-Pot en Kibana mostrando 37.000 ataques en 24 horas repartidos entre Dionaea, Cowrie, Sentrypeer y otros sensores">
+  <figcaption>Últimas 24 horas, 19–20 de mayo de 2026: 37.000 eventos. Dionaea (18k) y Cowrie (13k) concentran la mayoría.</figcaption>
+</figure>
+
+Y al abrir la ventana a **una semana**, la cifra y el reparto cambian de escala:
+
+<figure>
+  <img src="/assets/img/research/tpot-semana.png" alt="Panel de T-Pot mostrando 288.000 ataques en una semana, con Dionaea, Cowrie y Sentrypeer como sensores principales">
+  <figcaption>14–19 de mayo de 2026: 288.000 eventos en siete días. Los puertos más golpeados son 445 (SMB), 5060 (SIP), 443, 80 y 22.</figcaption>
+</figure>
+
+| Honeypot | Eventos (1 semana) | Servicio |
+|---|---|---|
+| `Dionaea` | ~89.000 | Captura de malware (SMB, puerto 445) |
+| `Cowrie` | ~63.000 | SSH / Telnet |
+| `Sentrypeer` | ~59.000 | SIP / VoIP (puerto 5060) |
+| `H0neytr4p` | ~34.000 | Multi-protocolo |
+| `Tanner` | ~19.000 | HTTP / HTTPS |
+| **Total 7 días** | **~288.000** | |
+
+Puestos uno junto a otro, los tres cortes dicen algo que ninguno dice por separado:
+
+1. **El volumen crece con el tiempo de exposición.** De 417 ataques el primer día a ~37.000 en un día cualquiera dos meses después. Un servidor nuevo no entra de golpe en todas las listas: entra en unas cuantas, y esas listas se copian.
+2. **La mezcla también cambia.** En las primeras 48 horas mandaba la fuerza bruta sobre SSH y la sonda multi-protocolo. A escala de semana pasan al frente la **captura de malware sobre SMB** y el **fraude telefónico sobre SIP**, dos superficies que ni siquiera aparecían en el corte inicial.
+
+La segunda conclusión es la que más cambia el consejo práctico. Si mides 48 horas y decides a partir de ahí, te llevas la idea de que el problema es SSH. Lo es al principio. Después es otro.
+
+### El sensor que no esperaba {#sip}
+
+De todo el despliegue, el resultado que menos me esperaba es el de **Sentrypeer**: 59.000 eventos en una semana simulando una centralita SIP. Es el tercer sensor por volumen, por delante de la sonda web.
+
+<figure>
+  <img src="/assets/img/research/tpot-sentrypeer.png" alt="Panel de Sentrypeer: reparto de métodos SIP, agentes de usuario, ASN de origen y relación entre IP de origen y número marcado">
+  <figcaption>Panel de Sentrypeer. Arriba, el reparto de métodos SIP y de agentes de usuario declarados. Abajo a la izquierda, los ASN de origen; el titular del AS con más tráfico se ha omitido a propósito — es una persona física, y de ella solo consta que por su red salió tráfico, no que atacara nadie.</figcaption>
+</figure>
+
+Los datos del panel explican bien qué se está buscando. El método dominante es `REGISTER`, es decir, intentos de darse de alta como extensión en la centralita, no llamadas. Los agentes de usuario declarados imitan teléfonos reales —Linksys SPA942, Polycom SoundPoint, Avaya One-X, Cisco IP Phone 7965— para pasar por terminales legítimos.
+
+El objetivo de esto es el **fraude telefónico**: si consigues registrarte en una centralita ajena, cursas llamadas a números de tarificación especial y la factura la paga el titular. Es un negocio que existe desde hace décadas y que sigue funcionando porque muy poca gente vigila el puerto 5060.
+
+Para un alojamiento turístico esto es más relevante que la media de los hallazgos, porque **la centralita es un equipo que casi todos tienen y casi nadie considera parte del perímetro informático**. La instala el proveedor de telefonía, se queda con su configuración por defecto y no vuelve a tocarse. No aparece en ningún inventario de TI.
+
+### Origen {#origen}
+
+Los cinco países con mayor volumen:
+
+1. Estados Unidos
+2. Holanda
+3. Filipinas
+4. Argentina
+5. Arabia Saudí
+
+Conviene leer esta lista con cuidado. **No indica quién ataca, indica desde dónde sale el tráfico.** Estados Unidos y Holanda encabezan la lista porque concentran infraestructura de alojamiento barata y abundante, no porque el ataque se origine allí. El proyecto excluyó explícitamente la atribución de su alcance: los datos permiten análisis estadístico y de patrones, no perfiles individuales.
+
+## Lectura de los datos {#lectura}
+
+### El ataque es indiscriminado, y por eso llega {#indiscriminado}
+
+El hallazgo relevante no es el volumen, es su **naturaleza**. Ninguno de esos 288.000 eventos semanales iba dirigido a un hotel de Lanzarote. Iban dirigidos a *cualquier cosa que respondiera*.
+
+Eso cambia el modelo de amenaza de una PYME por completo. La pregunta deja de ser *"¿tenemos algo que alguien quiera?"* y pasa a ser *"¿estamos por debajo del umbral de lo que un escáner automático explota sin intervención humana?"*. Es una pregunta mucho más fácil de responder, y mucho más fácil de accionar.
+
+### El tiempo de exposición es la métrica que importa {#tiempo-exposicion}
+
+Si el primer intento llega en menos de una hora, el margen para "ya lo configuraremos bien la semana que viene" no existe. Un servicio se despliega endurecido o se despliega comprometido; no hay un estado intermedio que dure.
+
+Esto tiene una consecuencia práctica concreta para un alojamiento: **el momento de mayor riesgo no es cuando el sistema lleva años funcionando, sino el día que se instala algo nuevo.** Un TPV nuevo, una cámara IP, un router que el proveedor deja con las credenciales por defecto "temporalmente".
+
+### Lo que un escáner busca es lo barato {#lo-barato}
+
+El reparto por sensor lo dice: SMB, SSH, SIP y web. No exploits sofisticados — credenciales por defecto, servicios de administración expuestos que no deberían estarlo, recursos compartidos abiertos y vulnerabilidades web conocidas con exploit público.
+
+Eso es una buena noticia, porque significa que las medidas que cortan la mayor parte del tráfico malicioso son también las más baratas.
+
+## Conclusiones {#conclusiones}
+
+Para un alojamiento pequeño, de los datos se deducen cuatro cosas:
+
+1. **La exposición se paga en minutos, no en meses.** No existe el periodo de gracia.
+2. **No hace falta ser un objetivo para ser atacado.** El ataque no selecciona; recorre.
+3. **La mayor parte del tráfico malicioso es automatizado y busca lo fácil.** Autenticación por clave en vez de contraseña, cerrar los servicios de administración al exterior y cambiar las credenciales por defecto neutralizan la mayoría.
+4. **Cada servicio nuevo reinicia el reloj.** El riesgo se concentra en el despliegue, no en la operación.
+
+## Limitaciones {#limitaciones}
+
+La honestidad sobre lo que estos datos **no** son es parte del resultado:
+
+- El periodo de captura fue de **7 semanas**, por debajo de las 8–12 planificadas. El conjunto de datos es menor de lo previsto y varios objetivos cuantitativos quedaron en curso al cerrar la memoria.
+- Las cifras por sensor son **lecturas del panel en ventanas concretas** —48 horas, 24 horas y 7 días—, no un recuento final consolidado de las siete semanas. Cada tabla dice de qué ventana es, y no son comparables entre sí como si fueran totales.
+- La primera versión de este artículo presentaba el corte de 48 horas como si fuera el total del periodo. Estaba mal y está corregido. Lo dejo escrito porque la corrección es parte del dato: un número de un honeypot sin su ventana temporal no significa nada.
+- Restricciones de memoria en la instancia inicial obligaron a **deshabilitar temporalmente Conpot y Elasticpot**, así que las superficies ICS/SCADA y Elasticsearch están infrarrepresentadas.
+- No se hizo atribución. Los orígenes geográficos son de la IP de salida, no del actor.
+
+Un honeypot mide lo que llega a un señuelo, no lo que le pasaría exactamente a una instalación real con su propio tráfico legítimo y sus propios usuarios. Es un indicador de la presión de fondo de Internet, y como tal hay que leerlo.
+
+## Referencias {#referencias}
+
+<ol class="refs">
+<li><a href="https://github.com/telekom-security/tpotce">T-Pot — The All In One Honeypot Platform</a>. Deutsche Telekom Security.</li>
+<li><a href="https://github.com/cowrie/cowrie">Cowrie SSH/Telnet Honeypot</a>.</li>
+<li><a href="https://attack.mitre.org/">MITRE ATT&amp;CK</a>, marco de referencia usado para clasificar las técnicas observadas.</li>
+<li><a href="https://github.com/fraydgarcia/tfg-honeypot-turismo">Memoria completa del proyecto</a> — 37 páginas, con la metodología, el despliegue y los datos originales.</li>
+</ol>

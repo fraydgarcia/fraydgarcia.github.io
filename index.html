@@ -1,0 +1,191 @@
+---
+layout: default
+home: true
+title: "Fray García · Blue Team / SOC"
+---
+
+  <nav class="col topnav" aria-label="Secciones">
+    <a href="#proyectos">Proyectos</a>
+    <a href="#investigacion">Investigación</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <header class="col">
+    <h1>Fray García</h1>
+    <p class="role"><span>Administrador de sistemas</span> <span>· Detección y respuesta</span></p>
+    <p class="intro">Administro sistemas Linux y Windows, redes y Active Directory, y me estoy especializando en detección y respuesta. Escribo sobre ataques reales y cómo se ven en los logs.</p>
+    <p class="ubicacion">Lanzarote, España</p>
+    <nav>
+      <a href="https://github.com/fraydgarcia">GitHub</a><span class="sep">/</span>
+      <a href="https://linkedin.com/in/fraineltomas">LinkedIn</a><span class="sep">/</span>
+      <a href="mailto:fraydgarcia@proton.me">Correo</a>
+    </nav>
+
+    <dl class="areas">
+      <div><dt>Detección</dt><dd>Elastic · Suricata · Cowrie · MITRE ATT&amp;CK</dd></div>
+      <div><dt>Sistemas</dt><dd>Linux · Windows · Active Directory · Redes</dd></div>
+      <div><dt>Ofensiva</dt><dd>Enumeración · Explotación · Escalada de privilegios</dd></div>
+      <div><dt>Nube</dt><dd>AWS · CloudTrail · IAM</dd></div>
+    </dl>
+  </header>
+
+  <div class="rule"></div>
+
+  <section class="col" id="proyectos">
+    <div class="label">Proyectos</div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Honeypot instrumentado para una PYME turística</span>
+          <span class="row-meta">2026</span>
+        </div>
+        <div class="row-desc">
+          Mi proyecto de fin de ciclo: un honeypot multi-servicio que simula el alojamiento de
+          Lanzarote y convierte cada interacción en señal. Cowrie recoge sesiones y comandos,
+          Suricata observa el tráfico y Elastic permite ordenar el ruido. El resultado está
+          mapeado a MITRE ATT&amp;CK y aterrizado en medidas que una pyme puede aplicar.
+        </div>
+        <div class="row-stack">T-Pot · Docker · Cowrie · Suricata · Elastic · MITRE ATT&amp;CK</div>
+        <div class="row-links">
+          <a href="https://github.com/fraydgarcia/tfg-honeypot-turismo">Código</a>
+          <a href="{{ '/research/que-recibe-realmente-una-pyme-turistica/' | relative_url }}">Qué recibió en la primera hora</a>
+        </div>
+      </div>
+      <a class="row" href="https://github.com/fraydgarcia/detection-rules">
+        <div class="row-head">
+          <span class="row-name">detection-rules — las reglas de mis análisis</span>
+          <span class="row-meta">Repositorio</span>
+        </div>
+        <div class="row-desc">
+          Las reglas de detección de mis artículos, juntas y en formato Sigma. Cada una enlaza al
+          análisis del que sale, y GitHub Actions las valida con sigma check en cada cambio.
+        </div>
+        <div class="row-stack">Sigma · Detection as code · GitHub Actions · MITRE ATT&amp;CK</div>
+      </a>
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Auditoría de Active Directory en producción</span>
+          <span class="row-meta">Auditoría</span>
+        </div>
+        <div class="row-desc">
+          Auditoría de seguridad sobre un entorno Active Directory empresarial en producción:
+          vías de escalada a Domain Admin y plan de mitigación.
+        </div>
+        <div class="row-stack">Active Directory · Escalada de privilegios · Mitigación · Perspectiva ofensiva</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col" id="investigacion">
+    <div class="label">Investigación</div>
+    <p class="note">Análisis propios de vulnerabilidades explotadas, del tráfico que recibe una infraestructura expuesta y de cómo detectarlo.</p>
+    {% if site.posts.size > 0 %}
+    <div class="rows">
+      {% for post in site.posts limit: 3 %}
+      <a class="row" href="{{ post.url | relative_url }}">
+        <div class="row-head">
+          <span class="row-name">{{ post.title }}</span>
+          <span class="row-meta">{{ post.date | date: "%-d.%m.%Y" }}</span>
+        </div>
+        {% if post.lead %}<div class="row-desc">{{ post.lead }}</div>{% endif %}
+        {% if post.stack %}<div class="row-stack">{{ post.stack }}</div>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% if site.posts.size > 3 %}
+    <div class="recent">
+      <a class="more" href="{{ '/research/' | relative_url }}">Ver las {{ site.posts.size }} investigaciones</a>
+    </div>
+    {% endif %}
+    {% endif %}
+    <div class="rows">
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Qué ocurre cuando una identidad hace más de lo que debía</span>
+          <span class="row-meta">Línea de trabajo</span>
+        </div>
+        <div class="row-desc">
+          Me interesa seguir el recorrido completo de una identidad: desde una aplicación que
+          necesita una credencial temporal hasta la evidencia que deja en CloudTrail. IMDSv2,
+          SSRF, trust policies y permisos mínimos son piezas del mismo problema: decidir qué
+          puede hacer un componente y tener una forma honesta de comprobar que no está haciendo
+          más.
+        </div>
+        <div class="row-stack">CloudTrail · Logging · IAM · STS · EC2 · IMDSv2</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col" id="ahora">
+    <div class="label">Ahora</div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Detección on-prem: lo que Windows deja escrito</span>
+          <span class="row-meta">HTB Certified Defensive Security Analyst (CDSA), en curso</span>
+        </div>
+        <div class="row-desc">
+          Estoy preparando CDSA. Lo elegí porque toca el terreno que ya pisaba como
+          administrador, Windows y Active Directory, pero desde el otro lado: qué telemetría deja
+          un equipo Windows y cómo se ve un ataque contra AD cuando lo buscas en los registros.
+        </div>
+        <div class="row-stack">CDSA · Windows · Active Directory · Sigma · Detección</div>
+      </div>
+      <div class="row">
+        <div class="row-head">
+          <span class="row-name">Registros en la nube que sirvan para investigar</span>
+          <span class="row-meta">Laboratorio AWS</span>
+        </div>
+        <div class="row-desc">
+          Laboratorios en AWS orientados a detección: qué registra CloudTrail cuando una
+          identidad usa credenciales temporales y si con eso podría reconstruir lo que pasó un
+          lunes por la mañana sin haberlo visto en directo. Las certificaciones de AWS siguen en
+          el plan, por detrás de esto.
+        </div>
+        <div class="row-stack">AWS · CloudTrail · IAM · STS · IMDSv2 · Logging</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col" id="sobre-mi">
+    <div class="label">Sobre mí</div>
+    <p class="about">
+      Soy administrador de sistemas en Lanzarote. Trabajo con Linux, Windows, redes y Active
+      Directory, y me estoy especializando en detección y operaciones de seguridad. De sistemas
+      me quedo con una idea: una infraestructura no está terminada cuando arranca, sino cuando se
+      entiende, se puede operar y aguanta una mala tarde.
+    </p>
+    <p class="about">
+      El hacking ético es parte de cómo trabajo: llevo tiempo practicando enumeración,
+      explotación y escalada de privilegios. No lo dejo al cambiar de lado —me sigue entrenando
+      el criterio—, y encima es lo que más me ayuda a detectar: cuesta ver un ataque en los logs
+      si no sabes cómo se monta por dentro.
+    </p>
+    <p class="about">
+      Busco mi primer puesto en un SOC o en detección. También en sistemas e infraestructura,
+      que es de donde vengo.
+    </p>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="col" id="contacto">
+    <div class="label">Contacto</div>
+    <dl class="areas contacto">
+      <div><dt>Correo</dt><dd><a href="mailto:fraydgarcia@proton.me">fraydgarcia@proton.me</a></dd></div>
+      <div><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/fraineltomas">in/fraineltomas</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/fraydgarcia">fraydgarcia</a></dd></div>
+      <div><dt>Ubicación</dt><dd>Lanzarote, España</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <a href="https://github.com/fraydgarcia/fraydgarcia.github.io">Código</a>
+  </footer>
