@@ -121,7 +121,8 @@ Juntas las piezas, la comparación queda así:
   <text x="77" y="146" text-anchor="middle" font-family="'Inter',sans-serif" font-size="12.5" fill="#0A0A0A">/etc/shadow</text>
   <text x="77" y="164" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#6B5D40">alpine:*:…</text>
   <line x1="152" y1="150" x2="204" y2="150" stroke="#6B5D40" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="2" y="214" font-family="'Inter',sans-serif" font-size="12.5" fill="#5C6166">glibc devuelve NULL al fallar y la comparación no llega a hacerse: por eso Debian, Ubuntu o RHEL no están afectados.</text>
+  <text x="2" y="208" font-family="'Inter',sans-serif" font-size="12.5" fill="#5C6166">glibc devuelve NULL al fallar y la comparación no llega a hacerse:</text>
+  <text x="2" y="226" font-family="'Inter',sans-serif" font-size="12.5" fill="#5C6166">por eso Debian, Ubuntu o RHEL no están afectados.</text>
 </svg>
 <figcaption>El mismo carácter significa dos cosas: en <code>shadow</code>, «esta cuenta no tiene contraseña»; en la salida de <code>crypt()</code> de musl, «he fallado». sshd los compara y salen iguales.</figcaption>
 </figure>
